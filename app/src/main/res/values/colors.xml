@@ -1,0 +1,59 @@
+<resources>
+    <color name="background_gradient_start">#000000</color>
+    <color name="black">#FF000000</color>
+    <color name="background_gradient_end">#DDDDDD</color>
+    <color name="fastlane_background">#0096a6</color>
+    <color name="search_opaque">#ffaa3f</color>
+    <color name="selected_background">#ffaa3f</color>
+    <color name="default_background">#3d3d3d</color>
+
+    <color name="dark_gunmetal">#21252b</color>
+    <color name="light_blue">#00b2ff</color>
+    <color name="joust_blue">#54a0ff</color>
+    <color name="light_red">#ff0000</color>
+    <color name="red_pink">#ed4d4d</color>
+    <color name="spanish_gray">#989899</color>
+    <color name="gray">#808080</color>
+    <color name="dark_gray">#707070</color>
+    <color name="light_gray">#a6a6a6</color>
+    <color name="white_lotion">#FDFDFD</color>
+    <color name="minty_green">#0be881</color>
+    <color name="slimy_green">#299d2b</color>
+    <color name="pastel_red">#ff6b6b</color>
+    <color name="pink_linen">#fde9e7</color>
+    <color name="red_vermilion">#e02b03</color>
+    <color name="desire_red">#eb4a57</color>
+    <color name="cosmic_late">#fef8e6</color>
+    <color name="marigold">#efa432</color>
+    <color name="green_alabaster">#edf6ea</color>
+    <color name="may_green">#4a9f30</color>
+    <color name="alice_blue">#f4f6ff</color>
+    <color name="blue">#1f46fd</color>
+    <color name="darker">#151B20</color>
+    <color name="dark">#313C44</color>
+    <color name="white_gray">#eaecee</color>
+    <color name="dark_blue">#336799</color>
+    <color name="slimy_blue">#7AA9F1</color>
+    <color name="mediumGray">#D1D1D1</color>
+    <color name="purple">#382198</color>
+    <color name="blue1">#7989FA</color>
+    <color name="blue2">#4A58DD</color>
+    <color name="dark_black">#595758</color>
+    <color name="primary">#DD3E46</color>
+    <color name="highlight_color">#0be881</color>
+
+    <color name="list_sparator">#616161</color>
+    <color name="bg">#303941</color>
+    <color name="putih_transparan">#33ffffff</color>
+
+    <color name="row_pressed_color">#ff6b6b</color>
+    <color name="row_focused_color">#FFCCCCCC</color>
+
+    <!--Custom Bottom Navigation Item Color-->
+    <color name="bottomNavItemColor">@color/light_gray</color>
+    <color name="bottomNavItemCheckedColor">@color/dark_blue</color>
+
+    <color name="placeholderColor">@color/mediumGray</color>
+
+
+</resources>
