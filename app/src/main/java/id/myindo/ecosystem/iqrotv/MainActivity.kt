@@ -1,11 +1,11 @@
 package id.myindo.ecosystem.iqrotv
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
+import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import id.myindo.ecosystem.iqrotv.databinding.ActivityMainBinding
+import id.myindo.ecosystem.iqrotv.iqro1.IqroActivity
 
 class MainActivity : FragmentActivity() {
 
@@ -29,6 +29,7 @@ class MainActivity : FragmentActivity() {
 
         listFragment.setOnContentClickedListener {
             openIqroActivity(it)
+            Log.d("MainActivity", "onCreate: $it")
         }
 
         listFragment
@@ -44,12 +45,23 @@ class MainActivity : FragmentActivity() {
     }
 
     private fun openIqroActivity(data: DataModel.Result.Detail) {
-        val intent = Intent(this, IqroActivity::class.java)
-        intent.putExtra("TITLE", data.title)
-        intent.putExtra("OVERVIEW", data.overview)
-        val resourceId = resources.getIdentifier(data.backdrop_path, "drawable", packageName)
-        intent.putExtra("IMAGE_RESOURCE", resourceId)
-        startActivity(intent)
+        val intent = when (data.title) {
+            "IQRO 1" -> Intent(this, IqroActivity::class.java)
+            "IQRO 2" -> Intent(this, IqroActivity::class.java)
+            "IQRO 3" -> Intent(this, IqroActivity::class.java)
+            "IQRO 4" -> Intent(this, IqroActivity::class.java)
+            "IQRO 5" -> Intent(this, IqroActivity::class.java)
+            "IQRO 6" -> Intent(this, Iqro6Activity::class.java)
+            else -> null
+        }
+
+        intent?.let {
+            it.putExtra("TITLE", data.title)
+            it.putExtra("OVERVIEW", data.overview)
+            val resourceId = resources.getIdentifier(data.backdrop_path, "drawable", packageName)
+            it.putExtra("IMAGE_RESOURCE", resourceId)
+            startActivity(it)
+        }
     }
 
 }

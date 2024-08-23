@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="24dp"
     android:background="@drawable/bg_iqro"
-    tools:context=".IqroActivity">
+    tools:context=".iqro1.IqroActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_center"
@@ -42,7 +42,7 @@
         android:layout_height="50dp"
         android:focusable="true"
         android:clickable="true"
-        android:background="@drawable/table_row_selector"
+        android:background="@color/white_lotion"
         android:src="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -70,7 +70,6 @@
         android:id="@+id/settings_icon"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@drawable/table_row_selector"
         android:layout_alignParentEnd="true"
         android:contentDescription="@string/img_setting"
         android:src="@drawable/ic_settings"
@@ -125,6 +124,62 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline_center"
         app:layout_constraintEnd_toStartOf="@+id/view_pager"
         app:layout_constraintTop_toTopOf="@+id/guideline_top" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:contentDescription="@string/img_setting"
+        android:src="@drawable/children_cap"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/popupCardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:cardBackgroundColor="@color/white_lotion"
+        app:cardCornerRadius="8dp"
+        android:visibility="gone"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_pager"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/view_pager">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/popupTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:textSize="40sp"
+                android:layout_marginStart="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/popupTextView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:layout_marginEnd="15dp"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="40sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
