@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import id.myindo.ecosystem.iqrotv.databinding.ActivityMainBinding
 import id.myindo.ecosystem.iqrotv.iqro1.IqroActivity
+import id.myindo.ecosystem.iqrotv.iqro6.Iqro6Activity
 
 class MainActivity : FragmentActivity() {
 

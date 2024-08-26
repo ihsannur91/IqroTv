@@ -12,6 +12,8 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import id.myindo.ecosystem.iqrotv.R
+import java.util.ArrayList
+import java.util.Arrays
 
 
 class IqroPage1Fragment : Fragment() {
@@ -19,10 +21,11 @@ class IqroPage1Fragment : Fragment() {
     private var listener: OnRowClickListener? = null
     private lateinit var rows: List<ConstraintLayout>
     private lateinit var ayatTexts: List<TextView>
+    private lateinit var iqraOnePageOne: HashMap<Int,List<TextView>>
 
     interface OnRowClickListener {
         fun onRowClick(row: Int)
-        fun getAyatText(index: Int): Pair<String, String>
+        fun getAyatText(index: Int): List<String>
     }
 
     override fun onAttach(context: Context) {
@@ -50,20 +53,15 @@ class IqroPage1Fragment : Fragment() {
             view.findViewById(R.id.row7)
         )
 
-        ayatTexts = listOf(
-            view.findViewById(R.id.ayat1),
-            view.findViewById(R.id.ayat2),
-            view.findViewById(R.id.ayat3),
-            view.findViewById(R.id.ayat4),
-            view.findViewById(R.id.ayat5),
-            view.findViewById(R.id.ayat6),
-            view.findViewById(R.id.ayat7),
-            view.findViewById(R.id.ayat8),
-            view.findViewById(R.id.ayat9),
-            view.findViewById(R.id.ayat10),
-            view.findViewById(R.id.ayat11),
-            view.findViewById(R.id.ayat12)
-        )
+        iqraOnePageOne = HashMap<Int,List<TextView>>()
+        iqraOnePageOne[0] = listOf(view.findViewById(R.id.ayat1),view.findViewById(R.id.ayat2))
+        iqraOnePageOne[1] = listOf(view.findViewById(R.id.ayat3),view.findViewById(R.id.ayat4))
+        iqraOnePageOne[2] = listOf(view.findViewById(R.id.ayat5),view.findViewById(R.id.ayat6))
+        iqraOnePageOne[3] = listOf(view.findViewById(R.id.ayat7),view.findViewById(R.id.ayat8))
+        iqraOnePageOne[4] = listOf(view.findViewById(R.id.ayat9),view.findViewById(R.id.ayat10))
+        iqraOnePageOne[5] = listOf(view.findViewById(R.id.ayat11),view.findViewById(R.id.ayat12))
+        iqraOnePageOne[6] = listOf(view.findViewById(R.id.ayat_13),view.findViewById(R.id.ayat_14),view.findViewById(R.id.ayat_15))
+
 
         rows.forEachIndexed { index, row ->
             row.setOnClickListener {
@@ -86,9 +84,18 @@ class IqroPage1Fragment : Fragment() {
         )
     }
 
-    fun getAyatText(index: Int): Pair<String, String> {
-        val ayat1 = ayatTexts.getOrNull(index)?.text?.toString() ?: ""
-        val ayat2 = ayatTexts.getOrNull(index + 1)?.text?.toString() ?: ""
-        return Pair(ayat1, ayat2)
+    fun getAyatText(index: Int): List<String> {
+        Log.d("getAyatText", index.toString())
+        if(iqraOnePageOne.contains(index)) {
+            var list = ArrayList<String>()
+            for (textView: TextView in iqraOnePageOne[index]!!) {
+                list.add(textView.text.toString());
+            }
+            return list;
+        }
+//        val ayat1 = ayatTexts.getOrNull(index)?.text?.toString() ?: ""
+//        val ayat2 = ayatTexts.getOrNull(index + 1)?.text?.toString() ?: ""
+        return listOf("");
     }
+
 }

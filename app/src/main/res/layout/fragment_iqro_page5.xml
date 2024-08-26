@@ -21,8 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="10dp"
-            android:orientation="vertical"
-            android:background="@drawable/table_border">
+            android:orientation="vertical">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,6 +35,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/ayat1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -71,6 +71,8 @@
                 tools:ignore="TouchTargetSizeCheck">
 
                 <TextView
+                    android:id="@+id/ayat3"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
@@ -89,6 +91,8 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/ayat2"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="45dp"
@@ -124,6 +128,8 @@
                 tools:ignore="TouchTargetSizeCheck">
 
                 <TextView
+                    android:id="@+id/ayat5"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
@@ -142,6 +148,8 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/ayat4"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="45dp"
@@ -176,6 +184,8 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/ayat7"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -194,6 +204,8 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/ayat6"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -228,6 +240,8 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/ayat9"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -246,6 +260,8 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/ayat8"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -281,6 +297,8 @@
                 tools:ignore="TouchTargetSizeCheck">
 
                 <TextView
+                    android:id="@+id/ayat11"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
@@ -299,6 +317,8 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/ayat10"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="45dp"
@@ -333,6 +353,8 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/ayat13"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -351,6 +373,8 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/ayat12"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -385,6 +409,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/ayat14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"

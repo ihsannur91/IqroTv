@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="24dp"
     android:background="@drawable/bg_iqro"
-    tools:context=".Iqro6Activity">
+    tools:context=".iqro6.Iqro6Activity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_center"
@@ -76,12 +76,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/speaker_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:contentDescription="@string/img_setting"
+        android:src="@drawable/ic_speaker"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/settings_icon"
+        app:layout_constraintTop_toTopOf="@+id/settings_icon" />
+
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
+        android:background="@drawable/table_border"
+
         app:layout_constraintBottom_toTopOf="@+id/guideline_center"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
@@ -140,8 +153,8 @@
         android:layout_gravity="center"
         app:cardBackgroundColor="@color/white_lotion"
         app:cardCornerRadius="8dp"
-        android:visibility="gone"
         app:cardElevation="8dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/view_pager"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="@+id/view_pager">
@@ -161,6 +174,19 @@
                 android:layout_marginStart="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/popupTextView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:layout_marginEnd="15dp"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="40sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView

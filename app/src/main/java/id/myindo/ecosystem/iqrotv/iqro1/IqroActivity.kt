@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
+import androidx.core.view.isVisible
 import androidx.viewpager2.widget.ViewPager2
 import com.wajahatkarim3.easyflipviewpager.BookFlipPageTransformer2
 import id.myindo.ecosystem.iqrotv.R
@@ -31,6 +32,7 @@ class IqroActivity : AppCompatActivity(),
     private lateinit var backPageButton: ImageButton
     private lateinit var pageIndicator: TextView
     private lateinit var settingsIcon: ImageView
+    private var voiceActor: String = "male"
 
     private var mode: Int = 1
     private var currentPage: Int = 0
@@ -38,18 +40,19 @@ class IqroActivity : AppCompatActivity(),
     private lateinit var popupCardView: CardView
     private lateinit var popupTextView1: TextView
     private lateinit var popupTextView2: TextView
+    private lateinit var popupTextView3: TextView
+
+    private var isShowHidePopUp = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityIqroBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val title = intent.getStringExtra("TITLE")
-        val overview = intent.getStringExtra("OVERVIEW")
-        val imageResource = intent.getIntExtra("IMAGE_RESOURCE", 0)
         popupCardView = findViewById(R.id.popupCardView)
         popupTextView1 = findViewById(R.id.popupTextView)
         popupTextView2 = findViewById(R.id.popupTextView2)
+        popupTextView3 = findViewById(R.id.popupTextView3)
         viewPager = findViewById(R.id.view_pager)
         nextPageButton = findViewById(R.id.next_page_button)
         backPageButton = findViewById(R.id.back_page_button)
@@ -70,6 +73,7 @@ class IqroActivity : AppCompatActivity(),
 
         adapter = IqroPagerAdapter(this)
         viewPager.adapter = adapter
+        viewPager.offscreenPageLimit = 5
 
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -103,6 +107,9 @@ class IqroActivity : AppCompatActivity(),
             showSettingsDialog()
         }
 
+        binding.speakerIcon.setOnClickListener {
+            showVoiceDialog()
+        }
 
         // Initial page indicator
         updatePageIndicator(viewPager.currentItem)
@@ -143,15 +150,50 @@ class IqroActivity : AppCompatActivity(),
             .show()
     }
 
+    private fun showVoiceDialog() {
+        val voiceActors = arrayOf("Male", "Female")
+        var selectedVoiceActor = if (voiceActor == "male") 0 else 1
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Settings")
+
+
+        // Pilihan voice actor
+        builder.setSingleChoiceItems(voiceActors, selectedVoiceActor) { _, which ->
+            selectedVoiceActor = which
+        }
+
+        builder.setPositiveButton("OK") { _, _ ->
+            voiceActor = if (selectedVoiceActor == 0) "male" else "female"
+        }
+
+        builder.setNegativeButton("Cancel", null)
+        builder.show()
+    }
+
     override fun onRowClick(row: Int) {
-        val (ayat1, ayat2) = getAyatText(row)
-        Log.d("iqroActivity", "value , $ayat2 , $ayat1")
+        if (isShowHidePopUp) {
+            showHidePopupWithAnimation()
+        }
+
+        highlightCurrentRow(currentPage, currentRow, false)
+        currentRow = row
+
+        mediaPlayer?.let {
+            if (it.isPlaying) {
+                it.stop()
+            }
+            it.release()
+            mediaPlayer = null
+        }
+
+        val ayat = getAyatText(row)
+        Log.d("IqroActivity", "value , $ayat")
+
         if (mode == 1) {
-            showPopupWithText(ayat1, ayat2)
+            showPopupWithText(ayat)
             playSoundForRow(currentPage, row)
         } else if (mode == 2) {
-            currentRow = row
-            showPopupWithText(ayat1, ayat2)
             playAndAdvance()
         }
     }
@@ -167,21 +209,21 @@ class IqroActivity : AppCompatActivity(),
         }
 
         if (soundResId != -1) {
-            // Stop and release MediaPlayer if it's playing
             mediaPlayer?.let {
                 if (it.isPlaying) {
                     it.stop()
                 }
                 it.release()
             }
+
             mediaPlayer = MediaPlayer.create(this, soundResId)
             mediaPlayer?.start()
 
-            // Highlight the row in the fragment
             highlightCurrentRow(page, row, true)
+
             mediaPlayer?.setOnCompletionListener {
-                // Remove highlight after sound completes
                 highlightCurrentRow(page, row, false)
+                showHidePopupWithAnimation()
             }
         } else {
             Log.d("IqroActivity", "Sound resource ID not found for page $page and row $row")
@@ -199,22 +241,44 @@ class IqroActivity : AppCompatActivity(),
         }
 
         if (soundResId != -1) {
+            // Hentikan dan rilis MediaPlayer jika sedang diputar
             mediaPlayer?.release()
             mediaPlayer = MediaPlayer.create(this, soundResId)
+
+            // Highlight baris yang sedang diputar
             highlightCurrentRow(currentPage, currentRow, true)
+
+            // Mulai pemutaran suara
             mediaPlayer?.start()
+
+            // Ambil teks ayat berdasarkan row saat ini
+            val ayat = getAyatText(currentRow)
+            showPopupWithText(ayat)
+
+            // Set listener untuk ketika pemutaran selesai
             mediaPlayer?.setOnCompletionListener {
+                // Hilangkan highlight dari baris yang selesai diputar
                 highlightCurrentRow(currentPage, currentRow, false)
+
+                // Increment currentRow untuk pindah ke baris berikutnya
                 currentRow++
+
+                // Jika currentRow melebihi jumlah baris, pindah ke halaman berikutnya
                 if (currentRow >= getTotalRowsForPage(currentPage)) {
                     currentRow = 0
                     currentPage++
+                    // Pindah ke halaman berikutnya jika masih ada halaman tersisa
                     if (currentPage < adapter.itemCount) {
                         viewPager.setCurrentItem(currentPage, true)
                     }
                 }
+
+                // Jika masih ada halaman dan baris tersisa, lanjutkan pemutaran
                 if (currentPage < adapter.itemCount) {
                     playAndAdvance()
+                } else {
+                    // Semua baris sudah diputar, sembunyikan pop-up
+                    showHidePopupWithAnimation()
                 }
             }
         } else {
@@ -226,81 +290,115 @@ class IqroActivity : AppCompatActivity(),
     }
 
         private fun getSoundResourceForPage1(row: Int): Int {
-        return when (row) {
-            0 -> R.raw.halam1_baris1
-            1 -> R.raw.halaman1_baris2
-            2 -> R.raw.halaman1_baris3
-            3 -> R.raw.halaman1_baris4
-            4 -> R.raw.halaman1_baris5
-            5 -> R.raw.halaman1_baris6
-            6 -> R.raw.halaman1_baris7
-            // Add more sounds here
-            else -> -1
+            return when (row) {
+                0 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman1_baris2 else R.raw.halam1_baris1
+                1 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman1_baris3 else R.raw.halaman1_baris2
+                2 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman1_baris4 else R.raw.halaman1_baris3
+                3 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman1_baris5 else R.raw.halaman1_baris4
+                4 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman1_baris6 else R.raw.halaman1_baris5
+                5 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman1_baris7 else R.raw.halaman1_baris6
+                6 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman1_baris8 else R.raw.halaman1_baris7
+                else -> -1
+            }
         }
-    }
 
     private fun getSoundResourceForPage2(row: Int): Int {
         return when (row) {
-            0 -> R.raw.halaman2_baris1
-            1 -> R.raw.halaman2_baris2
-            2 -> R.raw.halaman2_baris3
-            3 -> R.raw.halaman2_baris4
-            4 -> R.raw.halaman2_baris5
-            5 -> R.raw.halaman2_baris6
-            6 -> R.raw.halaman2_baris7
-            // Add more sounds here
+            0 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman2_baris2 else R.raw.halaman2_baris1
+            1 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman2_baris3 else R.raw.halaman2_baris2
+            2 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman2_baris4 else R.raw.halaman2_baris3
+            3 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman2_baris5 else R.raw.halaman2_baris4
+            4 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman2_baris6 else R.raw.halaman2_baris5
+            5 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman2_baris7 else R.raw.halaman2_baris6
+            6 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman2_baris8 else R.raw.halaman2_baris7
             else -> -1
         }
     }
 
     private fun getSoundResourceForPage3(row: Int): Int {
         return when (row) {
-            0 -> R.raw.full_iqro1_halaman3_baris1
-            1 -> R.raw.full_iqro1_halaman3_baris2
-            2 -> R.raw.full_iqro1_halaman3_baris3
-            3 -> R.raw.full_iqro1_halaman3_baris4
-            4 -> R.raw.full_iqro1_halaman3_baris5
-            5 -> R.raw.full_iqro1_halaman3_baris6
-            6 -> R.raw.full_iqro1_halaman3_baris7
-            7 -> R.raw.full_iqro1_halaman3_baris8
+            0 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman3_baris1 else R.raw.full_iqro1_halaman3_baris1
+            1 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman3_baris2 else R.raw.full_iqro1_halaman3_baris2
+            2 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman3_baris3 else R.raw.full_iqro1_halaman3_baris3
+            3 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman3_baris4 else R.raw.full_iqro1_halaman3_baris4
+            4 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman3_baris5 else R.raw.full_iqro1_halaman3_baris5
+            5 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman3_baris6 else R.raw.full_iqro1_halaman3_baris6
+            6 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman3_baris7 else R.raw.full_iqro1_halaman3_baris7
+            7 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman3_baris8 else R.raw.full_iqro1_halaman3_baris8
+
             else -> -1
         }
     }
 
     private fun getSoundResourceForPage4(row: Int): Int {
         return when (row) {
-            0 -> R.raw.full_iqro1_halaman4_baris1
-            1 -> R.raw.full_iqro1_halaman4_baris2
-            2 -> R.raw.full_iqro1_halaman4_baris3
-            3 -> R.raw.full_iqro1_halaman4_baris4
-            4 -> R.raw.full_iqro1_halaman4_baris5
-            5 -> R.raw.full_iqro1_halaman4_baris6
-            6 -> R.raw.full_iqro1_halaman4_baris7
-            7 -> R.raw.full_iqro1_halaman4_baris8
+            0 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman4_baris1 else R.raw.full_iqro1_halaman4_baris1
+            1 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman4_baris2 else R.raw.full_iqro1_halaman4_baris2
+            2 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman4_baris3 else R.raw.full_iqro1_halaman4_baris3
+            3 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman4_baris4 else R.raw.full_iqro1_halaman4_baris4
+            4 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman4_baris5 else R.raw.full_iqro1_halaman4_baris5
+            5 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman4_baris6 else R.raw.full_iqro1_halaman4_baris6
+            6 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman4_baris7 else R.raw.full_iqro1_halaman4_baris7
+            7 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman4_baris8 else R.raw.full_iqro1_halaman4_baris8
+
             else -> -1
         }
     }
 
     private fun getSoundResourceForPage5(row: Int): Int {
         return when (row) {
-            0 -> R.raw.full_iqro1_halaman5_baris1
-            1 -> R.raw.full_iqro1_halaman5_baris2
-            2 -> R.raw.full_iqro1_halaman5_baris3
-            3 -> R.raw.full_iqro1_halaman5_baris4
-            4 -> R.raw.full_iqro1_halaman5_baris5
-            5 -> R.raw.full_iqro1_halaman5_baris6
-            6 -> R.raw.full_iqro1_halaman5_baris7
-            7 -> R.raw.full_iqro1_halaman5_baris8
+            0 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris1 else R.raw.full_iqro1_halaman5_baris1
+            1 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris2 else R.raw.full_iqro1_halaman4_baris2
+            2 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris3 else R.raw.full_iqro1_halaman4_baris3
+            3 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris4 else R.raw.full_iqro1_halaman4_baris4
+            4 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris5 else R.raw.full_iqro1_halaman4_baris5
+            5 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris6 else R.raw.full_iqro1_halaman4_baris6
+            6 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris7 else R.raw.full_iqro1_halaman4_baris7
+            7 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris8 else R.raw.full_iqro1_halaman4_baris8
             else -> -1
         }
     }
 
-    private fun showPopupWithText(text1: String, text2: String) {
-        popupTextView1.text = text1
-        popupTextView2.text = text2
-        popupCardView.visibility = View.VISIBLE
 
-        Log.d("IqroActivity", "showPopupWithText true ")
+    private fun showPopupWithText(ayat: List<String>) {
+        val fragment = supportFragmentManager.findFragmentByTag("f$currentPage")
+
+        // Reset visibility and text before updating
+        popupTextView1.isVisible = true
+        popupTextView2.isVisible = true
+        popupTextView3.isVisible = true
+        popupTextView1.text = ""
+        popupTextView2.text = ""
+        popupTextView3.text = ""
+
+        // Update text sesuai dengan fragment yang sedang aktif
+        if (fragment is IqroPage1Fragment || fragment is IqroPage2Fragment || fragment is IqroPage3Fragment || fragment is IqroPage4Fragment || fragment is IqroPage5Fragment) {
+            when (ayat.size) {
+                1 -> {
+                    popupTextView1.text = ""
+                    popupTextView2.text = ""
+                    popupTextView3.text = ayat[0]
+                    popupTextView3.isVisible = true
+                }
+                2 -> {
+                    popupTextView1.text = ayat[1]
+                    popupTextView2.text = ayat[0]
+                    popupTextView3.isVisible = false
+                }
+                3 -> {
+                    popupTextView1.text = ayat[1]
+                    popupTextView2.text = ayat[0]
+                    popupTextView3.text = ayat[2]
+                    popupTextView3.isVisible = true
+                }
+            }
+        }
+
+        // Tampilkan popup dengan animasi
+        showHidePopupWithAnimation()
+
+        // Log untuk memastikan text ayat diperbarui
+        Log.d("IqroActivity", "showPopupWithText: ${ayat.joinToString()}")
 
         // Tambahkan animasi untuk memunculkan popup
         popupCardView.alpha = 0f
@@ -316,27 +414,38 @@ class IqroActivity : AppCompatActivity(),
         // Hide popup after sound ends
         mediaPlayer?.setOnCompletionListener {
             Log.d("IqroActivity", "Suara selesai diputar, menghilangkan popup...")
-
-            hidePopupWithAnimation()
-            highlightCurrentRow(currentPage, currentRow, false)
+            showHidePopupWithAnimation()
             mediaPlayer?.release()
             mediaPlayer = null
         }
     }
 
-    private fun hidePopupWithAnimation() {
-        popupCardView.visibility = View.GONE
-        popupTextView1.visibility = View.GONE
-        popupTextView2.visibility = View.GONE
+    private fun showHidePopupWithAnimation() {
         Log.d("IqroActivity", "Popup disembunyikan tanpa animasi")
+        popupCardView.alpha = 0f
+        popupCardView.scaleX = 0.8f
+        popupCardView.scaleY = 0.8f
+        popupCardView.animate()
+            .alpha(1f)
+            .scaleX(1f)
+            .scaleY(1f)
+            .setDuration(300)
+            .start()
+        isShowHidePopUp = !isShowHidePopUp
+        popupCardView.isVisible = isShowHidePopUp
+        popupTextView1.isVisible = isShowHidePopUp
+        popupTextView2.isVisible = isShowHidePopUp
     }
 
-    override fun getAyatText(index: Int): Pair<String, String> {
+    override fun getAyatText(index: Int): List<String> {
         val fragment = supportFragmentManager.findFragmentByTag("f$currentPage")
-        return if (fragment is IqroPage1Fragment) {
-            fragment.getAyatText(index)
-        } else {
-            Pair("", "")
+        return when (fragment) {
+            is IqroPage1Fragment -> fragment.getAyatText(index)
+            is IqroPage2Fragment -> fragment.getAyatText(index)
+            is IqroPage3Fragment -> fragment.getAyatText(index)
+            is IqroPage4Fragment -> fragment.getAyatText(index)
+            is IqroPage5Fragment -> fragment.getAyatText(index)
+            else -> listOf("")
         }
     }
 
