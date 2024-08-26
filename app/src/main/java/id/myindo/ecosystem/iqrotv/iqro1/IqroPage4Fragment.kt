@@ -1,6 +1,7 @@
 package id.myindo.ecosystem.iqrotv.iqro1
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -78,7 +79,11 @@ class IqroPage4Fragment : Fragment() {
         listener = null
     }
 
-    fun highlightRow(row: Int, highlight: Boolean) {
+    fun highlightRow(row: Int, prevRow: Int, highlight: Boolean) {
+
+        for (row in rows) {
+            row.setBackgroundColor(Color.TRANSPARENT)
+        }
         rows[row].setBackgroundColor(
             if (highlight) resources.getColor(R.color.highlight_color)
             else resources.getColor(android.R.color.transparent)

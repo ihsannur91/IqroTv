@@ -37,6 +37,7 @@ class IqroActivity : AppCompatActivity(),
     private var mode: Int = 1
     private var currentPage: Int = 0
     private var currentRow: Int = 0
+    private var prevRow: Int = 0
     private lateinit var popupCardView: CardView
     private lateinit var popupTextView1: TextView
     private lateinit var popupTextView2: TextView
@@ -172,12 +173,10 @@ class IqroActivity : AppCompatActivity(),
     }
 
     override fun onRowClick(row: Int) {
-        if (isShowHidePopUp) {
-            showHidePopupWithAnimation()
-        }
 
-        highlightCurrentRow(currentPage, currentRow, false)
         currentRow = row
+        Log.d("onRowClick", "currentRow $currentRow prevRow $prevRow")
+        highlightCurrentRow(currentPage, currentRow, prevRow, false)
 
         mediaPlayer?.let {
             if (it.isPlaying) {
@@ -219,11 +218,12 @@ class IqroActivity : AppCompatActivity(),
             mediaPlayer = MediaPlayer.create(this, soundResId)
             mediaPlayer?.start()
 
-            highlightCurrentRow(page, row, true)
+            highlightCurrentRow(page, row, prevRow, true)
 
             mediaPlayer?.setOnCompletionListener {
-                highlightCurrentRow(page, row, false)
-                showHidePopupWithAnimation()
+                highlightCurrentRow(page, row, prevRow, false)
+                showHidePopupWithAnimation(false)
+
             }
         } else {
             Log.d("IqroActivity", "Sound resource ID not found for page $page and row $row")
@@ -246,7 +246,7 @@ class IqroActivity : AppCompatActivity(),
             mediaPlayer = MediaPlayer.create(this, soundResId)
 
             // Highlight baris yang sedang diputar
-            highlightCurrentRow(currentPage, currentRow, true)
+            highlightCurrentRow(currentPage, currentRow, prevRow,true)
 
             // Mulai pemutaran suara
             mediaPlayer?.start()
@@ -258,34 +258,31 @@ class IqroActivity : AppCompatActivity(),
             // Set listener untuk ketika pemutaran selesai
             mediaPlayer?.setOnCompletionListener {
                 // Hilangkan highlight dari baris yang selesai diputar
-                highlightCurrentRow(currentPage, currentRow, false)
+                highlightCurrentRow(currentPage, currentRow, prevRow,false)
 
                 // Increment currentRow untuk pindah ke baris berikutnya
+                Log.d("playAndAdvance", "currentRow $currentRow")
                 currentRow++
 
                 // Jika currentRow melebihi jumlah baris, pindah ke halaman berikutnya
-                if (currentRow >= getTotalRowsForPage(currentPage)) {
+               /* if (currentRow >= getTotalRowsForPage(currentPage)) {
                     currentRow = 0
                     currentPage++
                     // Pindah ke halaman berikutnya jika masih ada halaman tersisa
                     if (currentPage < adapter.itemCount) {
                         viewPager.setCurrentItem(currentPage, true)
                     }
-                }
+                }*/
 
-                // Jika masih ada halaman dan baris tersisa, lanjutkan pemutaran
-                if (currentPage < adapter.itemCount) {
-                    playAndAdvance()
-                } else {
-                    // Semua baris sudah diputar, sembunyikan pop-up
-                    showHidePopupWithAnimation()
-                }
+                playAndAdvance()
+
             }
         } else {
             Log.d("IqroActivity", "Sound resource ID not found for page $currentPage and row $currentRow")
             mediaPlayer?.stop()
             mediaPlayer?.release()
             mediaPlayer = null
+            showHidePopupWithAnimation(false)
         }
     }
 
@@ -394,10 +391,8 @@ class IqroActivity : AppCompatActivity(),
             }
         }
 
-        // Tampilkan popup dengan animasi
-        showHidePopupWithAnimation()
+        showHidePopupWithAnimation(true)
 
-        // Log untuk memastikan text ayat diperbarui
         Log.d("IqroActivity", "showPopupWithText: ${ayat.joinToString()}")
 
         // Tambahkan animasi untuk memunculkan popup
@@ -411,16 +406,9 @@ class IqroActivity : AppCompatActivity(),
             .setDuration(300)
             .start()
 
-        // Hide popup after sound ends
-        mediaPlayer?.setOnCompletionListener {
-            Log.d("IqroActivity", "Suara selesai diputar, menghilangkan popup...")
-            showHidePopupWithAnimation()
-            mediaPlayer?.release()
-            mediaPlayer = null
-        }
     }
 
-    private fun showHidePopupWithAnimation() {
+    private fun showHidePopupWithAnimation(isHide: Boolean) {
         Log.d("IqroActivity", "Popup disembunyikan tanpa animasi")
         popupCardView.alpha = 0f
         popupCardView.scaleX = 0.8f
@@ -431,10 +419,11 @@ class IqroActivity : AppCompatActivity(),
             .scaleY(1f)
             .setDuration(300)
             .start()
-        isShowHidePopUp = !isShowHidePopUp
+        val isShowHidePopUp = isHide
         popupCardView.isVisible = isShowHidePopUp
         popupTextView1.isVisible = isShowHidePopUp
         popupTextView2.isVisible = isShowHidePopUp
+        popupTextView3.isVisible = isShowHidePopUp
     }
 
     override fun getAyatText(index: Int): List<String> {
@@ -451,7 +440,7 @@ class IqroActivity : AppCompatActivity(),
 
     private fun getTotalRowsForPage(page: Int): Int {
         return when (page) {
-            0 -> 10 // Adjust based on the number of rows in page 1
+            0 -> 10
             1 -> 10
             2 -> 10
             3 -> 10
@@ -460,14 +449,14 @@ class IqroActivity : AppCompatActivity(),
         }
     }
 
-    private fun highlightCurrentRow(page: Int, row: Int, highlight: Boolean) {
+    private fun highlightCurrentRow(page: Int, row: Int, prevRow: Int, highlight: Boolean) {
         val fragment = supportFragmentManager.findFragmentByTag("f$page")
         when {
-            page == 0 && fragment is IqroPage1Fragment -> fragment.highlightRow(row, highlight)
-            page == 1 && fragment is IqroPage2Fragment -> fragment.highlightRow(row, highlight)
-            page == 2 && fragment is IqroPage3Fragment -> fragment.highlightRow(row, highlight)
-            page == 3 && fragment is IqroPage4Fragment -> fragment.highlightRow(row, highlight)
-            page == 4 && fragment is IqroPage5Fragment -> fragment.highlightRow(row, highlight)
+            page == 0 && fragment is IqroPage1Fragment -> fragment.highlightRow(row, prevRow, highlight)
+            page == 1 && fragment is IqroPage2Fragment -> fragment.highlightRow(row, prevRow, highlight)
+            page == 2 && fragment is IqroPage3Fragment -> fragment.highlightRow(row, prevRow, highlight)
+            page == 3 && fragment is IqroPage4Fragment -> fragment.highlightRow(row, prevRow, highlight)
+            page == 4 && fragment is IqroPage5Fragment -> fragment.highlightRow(row, prevRow, highlight)
         }
     }
 

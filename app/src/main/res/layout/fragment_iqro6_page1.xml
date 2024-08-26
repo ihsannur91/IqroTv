@@ -35,7 +35,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textDirection="ltr"
-                android:textSize="28sp"
+                android:textSize="26sp"
                 android:textStyle="normal" />
 
 
@@ -81,7 +81,7 @@
                 android:layout_marginEnd="45dp"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="مِنْ --&gt; وَّلِدِهِ"
+                android:text="مِنْ --&gt; وَّاحِدٍ"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
@@ -188,7 +188,7 @@
                 android:layout_marginStart="45dp"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="عَدُوًّاوَّحَزَنًا 0"
+                android:text="عَدُوًّاوَّحَزَنًا "
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
@@ -258,7 +258,7 @@
                 android:layout_marginEnd="40dp"
                 android:gravity="center"
                 android:padding="8dp"
-                android:text="وَاِلٰهُكُمْ اِلٰهٌُ وَّاحِدٌ 0"
+                android:text="وَاِلٰهُكُمْ اِلٰهُ وَّاحِدٌ 0"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
