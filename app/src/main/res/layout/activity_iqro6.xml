@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".94" />
+        app:layout_constraintGuide_percent=".8" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_top"
@@ -27,14 +27,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".3" />
+        app:layout_constraintGuide_percent=".26" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".7" />
+        app:layout_constraintGuide_percent=".74" />
 
     <ImageButton
         android:id="@+id/btn_back"
@@ -86,6 +86,30 @@
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toStartOf="@+id/settings_icon"
         app:layout_constraintTop_toTopOf="@+id/settings_icon" />
+
+    <ImageView
+        android:id="@+id/btnPauseResume"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/ic_pause"
+        android:text="Pause"
+        android:visibility="gone"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toTopOf="@+id/guideline_top" />
+
+    <ImageView
+        android:id="@+id/btnStop"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_stop"
+        android:text="Stop"
+        android:visibility="gone"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/btnPauseResume" />
 
 
     <androidx.viewpager2.widget.ViewPager2
@@ -148,16 +172,19 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/popupCardView"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         app:cardBackgroundColor="@color/white_lotion"
         app:cardCornerRadius="8dp"
-        app:cardElevation="8dp"
+        android:layout_marginTop="20dp"
+        app:cardElevation="3dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/view_pager"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="@+id/view_pager">
+        app:layout_constraintStart_toStartOf="@+id/view_pager"
+        app:layout_constraintTop_toTopOf="@+id/guideline_center">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -167,11 +194,11 @@
                 android:id="@+id/popupTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15sp"
                 android:padding="16dp"
-                android:textStyle="bold"
                 android:textColor="@android:color/black"
                 android:textSize="40sp"
-                android:layout_marginStart="15sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -181,23 +208,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
-                android:layout_marginEnd="15dp"
                 android:textColor="@android:color/black"
-                android:textStyle="bold"
                 android:textSize="40sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/popupTextView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
                 android:layout_marginEnd="15dp"
+                android:padding="16dp"
                 android:textColor="@android:color/black"
-                android:textStyle="bold"
                 android:textSize="40sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

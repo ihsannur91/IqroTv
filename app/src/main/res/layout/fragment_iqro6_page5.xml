@@ -27,23 +27,45 @@
                 android:background="@drawable/table_row_selector"
                 android:clickable="true"
                 android:focusable="true"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_gravity="center"
                 android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_circle"
+                    android:layout_marginStart="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
 
                 <TextView
                     android:id="@+id/ayat1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="وَظِلٍّ مِّنْ يَّحْمُوْمٍ 0"
+                    android:text="وَظِلٍّ مِّنْ يَّحْمُوْمٍ"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textDirection="ltr"
                     android:textSize="30sp"
-                    android:layout_marginEnd="40dp"
+                    android:layout_marginEnd="35dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_circle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -51,10 +73,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="اَوَاٰبَآؤُنَا الْاَوَّلُوْنَ 0"
+                    android:text="اَوَاٰبَآؤُنَا الْاَوَّلُوْنَ"
                     android:textAlignment="center"
                     android:textAllCaps="false"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginStart="45dp"
                     android:textColor="@color/black"
                     android:textDirection="ltr"
                     android:textSize="30sp"
@@ -77,25 +99,45 @@
                 android:background="@drawable/table_row_selector"
                 android:clickable="true"
                 android:focusable="true"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:orientation="horizontal"
                 tools:ignore="TouchTargetSizeCheck">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_circle"
+                    android:layout_marginStart="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
                 <TextView
                     android:id="@+id/ayat3"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="لَنْ يَّغْفِرَاللّٰهُ لَهُمْ 0"
+                    android:text="لَنْ يَّغْفِرَاللّٰهُ لَهُمْ"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textDirection="ltr"
                     android:textSize="30sp"
-                    android:layout_marginEnd="40dp"
+                    android:layout_marginEnd="35dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_circle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -104,10 +146,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="اِلَّآاَنْ يَّشَآءَ اللّٰهُ 0"
+                    android:text="اِلَّآاَنْ يَّشَآءَ اللّٰهُ"
                     android:textAlignment="center"
                     android:textAllCaps="false"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginStart="45dp"
                     android:textColor="@color/black"
                     android:textDirection="ltr"
                     android:textSize="30sp"
@@ -130,8 +172,20 @@
                 android:background="@drawable/table_row_selector"
                 android:clickable="true"
                 android:focusable="true"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:orientation="horizontal"
                 tools:ignore="TouchTargetSizeCheck">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_circle"
+                    android:layout_marginStart="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
                 <TextView
@@ -141,7 +195,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="مَآأُرِيْدُمِنْهُمْ مِّنْ رِّزْقٍ وَّمَآاُرِيْدُاَنْ يُطْعِمُوْنِ 0"
+                    android:text="مَآأُرِيْدُمِنْهُمْ مِّنْ رِّزْقٍ وَّمَآاُرِيْدُاَنْ يُطْعِمُوْنِ"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
@@ -165,10 +219,22 @@
                 android:id="@+id/row4"
                 android:focusable="true"
                 android:clickable="true"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/table_row_selector"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_circle"
+                    android:layout_marginStart="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
                 <TextView
@@ -178,7 +244,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="فَوَيْلٌ لِّلَّذِيْنَ كَفَرُوْامِنْ يَّوْمِهِمُ الَّذِي يُوْعَدُوْنَ 0"
+                    android:text="فَوَيْلٌ لِّلَّذِيْنَ كَفَرُوْامِنْ يَّوْمِهِمُ الَّذِي يُوْعَدُوْنَ"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
@@ -202,10 +268,22 @@
                 android:id="@+id/row5"
                 android:focusable="true"
                 android:clickable="true"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/table_row_selector"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_circle"
+                    android:layout_marginStart="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
                 <TextView
@@ -215,7 +293,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="فَمَا اسْطَاعُوآ اَنْ يَّظْهَرُوْهُ وَمَا اسْتَطَاعُوْالَهُ نَقْبًا 0"
+                    android:text="فَمَا اسْطَاعُوآ اَنْ يَّظْهَرُوْهُ وَمَا اسْتَطَاعُوْالَهُ نَقْبًا"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
@@ -224,6 +302,7 @@
                     android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.54"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -242,8 +321,21 @@
                 android:background="@drawable/table_row_selector"
                 android:clickable="true"
                 android:focusable="true"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:orientation="horizontal"
                 tools:ignore="TouchTargetSizeCheck">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_circle"
+                    android:layout_marginStart="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
 
                 <TextView
                     android:id="@+id/ayat8"
@@ -252,7 +344,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="وَمَاتَشَآءُوْنَ اِلَّآ اَنْ يَّشَآءَ اللّٰهُ رَبُّ الْعٰلَمِيْنَ 0"
+                    android:text="وَمَاتَشَآءُوْنَ اِلَّآ اَنْ يَّشَآءَ اللّٰهُ رَبُّ الْعٰلَمِيْنَ"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
@@ -276,10 +368,22 @@
                 android:id="@+id/row7"
                 android:focusable="true"
                 android:clickable="true"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/table_row_selector"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_circle"
+                    android:layout_marginStart="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
                 <TextView
@@ -288,27 +392,35 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="كُلٌّ يَّجْرِيْ لِاَجَلٍ مُّسَمًّى 0"
+                    android:text="كُلٌّ يَّجْرِيْ لِاَجَلٍ مُّسَمًّى"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textDirection="ltr"
                     android:textSize="30sp"
-                    android:layout_marginEnd="40dp"
+                    android:layout_marginEnd="35dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_circle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/ayat10"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="لَاٰيٰتٍ لِّقَوْمٍ يَّتَفَكَّرُوْنَ 0"
+                    android:text="لَاٰيٰتٍ لِّقَوْمٍ يَّتَفَكَّرُوْنَ"
                     android:textAlignment="center"
                     android:textAllCaps="false"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginStart="45dp"
                     android:textColor="@color/black"
                     android:textDirection="ltr"
                     android:textSize="30sp"
@@ -329,10 +441,22 @@
                 android:id="@+id/row8"
                 android:focusable="true"
                 android:clickable="true"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/table_row_selector"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_circle"
+                    android:layout_marginStart="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
                 <TextView
@@ -341,12 +465,12 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:text="مَنْ يَّتَبَدَّلِ الْكُفْرَبِالْاِيْمَانِ فَقَدْ ضَلَّ سَوَآءَ السَّبِيْلِ 0"
+                    android:text="مَنْ يَّتَبَدَّلِ الْكُفْرَبِالْاِيْمَانِ فَقَدْ ضَلَّ سَوَآءَ السَّبِيْلِ"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textDirection="ltr"
-                    android:textSize="25sp"
+                    android:textSize="30sp"
                     android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

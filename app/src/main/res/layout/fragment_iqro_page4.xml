@@ -46,7 +46,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textDirection="ltr"
-                    android:textSize="30sp"
+                    android:textSize="40sp"
                     android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -67,6 +67,9 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/table_row_selector"
                 android:clickable="true"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:focusable="true"
                 android:orientation="horizontal"
                 tools:ignore="TouchTargetSizeCheck">
@@ -124,6 +127,9 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:orientation="horizontal"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 tools:ignore="TouchTargetSizeCheck">
 
                 <TextView
@@ -178,6 +184,9 @@
                 android:background="@drawable/table_row_selector"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -229,6 +238,9 @@
                 android:id="@+id/row5"
                 android:focusable="true"
                 android:clickable="true"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/table_row_selector"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -285,6 +297,9 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/table_row_selector"
                 android:clickable="true"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:focusable="true"
                 android:orientation="horizontal"
                 tools:ignore="TouchTargetSizeCheck">
@@ -341,6 +356,9 @@
                 android:background="@drawable/table_row_selector"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -392,6 +410,9 @@
                 android:id="@+id/row8"
                 android:focusable="true"
                 android:clickable="true"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/table_row_selector"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

@@ -21,7 +21,7 @@ class IqroPage1Fragment : Fragment() {
     private var listener: OnRowClickListener? = null
     private lateinit var rows: List<ConstraintLayout>
     private lateinit var ayatTexts: List<TextView>
-    private lateinit var iqraOnePageOne: HashMap<Int,List<TextView>>
+    private lateinit var iqraOnePageOne: HashMap<Int,List<String>>
 
     interface OnRowClickListener {
         fun onRowClick(row: Int)
@@ -53,14 +53,14 @@ class IqroPage1Fragment : Fragment() {
             view.findViewById(R.id.row7)
         )
 
-        iqraOnePageOne = HashMap<Int,List<TextView>>()
-        iqraOnePageOne[0] = listOf(view.findViewById(R.id.ayat1),view.findViewById(R.id.ayat2))
-        iqraOnePageOne[1] = listOf(view.findViewById(R.id.ayat3),view.findViewById(R.id.ayat4))
-        iqraOnePageOne[2] = listOf(view.findViewById(R.id.ayat5),view.findViewById(R.id.ayat6))
-        iqraOnePageOne[3] = listOf(view.findViewById(R.id.ayat7),view.findViewById(R.id.ayat8))
-        iqraOnePageOne[4] = listOf(view.findViewById(R.id.ayat9),view.findViewById(R.id.ayat10))
-        iqraOnePageOne[5] = listOf(view.findViewById(R.id.ayat11),view.findViewById(R.id.ayat12))
-        iqraOnePageOne[6] = listOf(view.findViewById(R.id.ayat_13),view.findViewById(R.id.ayat_14),view.findViewById(R.id.ayat_15))
+        iqraOnePageOne = HashMap<Int,List<String>>()
+        iqraOnePageOne[0] = listOf("a a","a ba")
+        iqraOnePageOne[1] = listOf("ba a ba","a ba a")
+        iqraOnePageOne[2] = listOf("ba a a","a a ba")
+        iqraOnePageOne[3] = listOf("ba ba a","a ba ba")
+        iqraOnePageOne[4] = listOf("ba a ba","a ba a ")
+        iqraOnePageOne[5] = listOf(" a a a","ba ba ba")
+        iqraOnePageOne[6] = listOf("a ba","a ba","a ba")
 
 
         rows.forEachIndexed { index, row ->
@@ -94,8 +94,8 @@ class IqroPage1Fragment : Fragment() {
         Log.d("getAyatText", index.toString())
         if(iqraOnePageOne.contains(index)) {
             var list = ArrayList<String>()
-            for (textView: TextView in iqraOnePageOne[index]!!) {
-                list.add(textView.text.toString());
+            for (textView: String in iqraOnePageOne[index]!!) {
+                list.add(textView.toString())
             }
             return list;
         }

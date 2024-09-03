@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import id.myindo.ecosystem.iqrotv.R
 import java.util.ArrayList
 
@@ -19,7 +20,7 @@ class IqroPage3Fragment : Fragment() {
     private var listener: OnRowClickListener? = null
     private lateinit var rows: List<ConstraintLayout>
     private lateinit var ayatTexts: List<TextView>
-    private lateinit var iqraOnePageThree: HashMap<Int,List<TextView>>
+    private lateinit var iqraOnePageThree: HashMap<Int,List<String>>
 
     interface OnRowClickListener {
         fun onRowClick(row: Int)
@@ -53,15 +54,15 @@ class IqroPage3Fragment : Fragment() {
             view.findViewById(R.id.row8)
         )
 
-        iqraOnePageThree = HashMap<Int,List<TextView>>()
-        iqraOnePageThree[0] = listOf(view.findViewById(R.id.ayat1))
-        iqraOnePageThree[1] = listOf(view.findViewById(R.id.ayat2),view.findViewById(R.id.ayat3))
-        iqraOnePageThree[2] = listOf(view.findViewById(R.id.ayat4),view.findViewById(R.id.ayat5))
-        iqraOnePageThree[3] = listOf(view.findViewById(R.id.ayat6),view.findViewById(R.id.ayat7))
-        iqraOnePageThree[4] = listOf(view.findViewById(R.id.ayat8),view.findViewById(R.id.ayat9))
-        iqraOnePageThree[5] = listOf(view.findViewById(R.id.ayat10),view.findViewById(R.id.ayat11))
-        iqraOnePageThree[6] = listOf(view.findViewById(R.id.ayat12),view.findViewById(R.id.ayat13))
-        iqraOnePageThree[7] = listOf(view.findViewById(R.id.ayat14),view.findViewById(R.id.ayat15))
+        iqraOnePageThree = HashMap<Int,List<String>>()
+        iqraOnePageThree[0] = listOf("ba ta ta")
+        iqraOnePageThree[1] = listOf("sa ba ta","sa a ba")
+        iqraOnePageThree[2] = listOf("ba a sa"," ba ta ta")
+        iqraOnePageThree[3] = listOf("sa ba sa","a ta ba")
+        iqraOnePageThree[4] = listOf("a sa sa","ta ba ta")
+        iqraOnePageThree[5] = listOf("ba sa sa","ta ta a")
+        iqraOnePageThree[6] = listOf("ba ta sa","sa ba sa")
+        iqraOnePageThree[7] = listOf("a ba ta sa","a ba ta sa")
 
 
         rows.forEachIndexed { index, textView ->
@@ -84,8 +85,8 @@ class IqroPage3Fragment : Fragment() {
             row.setBackgroundColor(Color.TRANSPARENT)
         }
         rows[row].setBackgroundColor(
-            if (highlight) resources.getColor(R.color.highlight_color)
-            else resources.getColor(android.R.color.transparent)
+            if (highlight) ContextCompat.getColor(requireContext(), R.color.highlight_color)
+            else Color.TRANSPARENT
         )
     }
 
@@ -93,14 +94,14 @@ class IqroPage3Fragment : Fragment() {
         Log.d("getAyatText", index.toString())
         if(iqraOnePageThree.contains(index)) {
             var list = ArrayList<String>()
-            for (textView: TextView in iqraOnePageThree[index]!!) {
-                list.add(textView.text.toString());
+            for (textView: String in iqraOnePageThree[index]!!) {
+                list.add(textView)
             }
-            return list;
+            return list
         }
 //        val ayat1 = ayatTexts.getOrNull(index)?.text?.toString() ?: ""
 //        val ayat2 = ayatTexts.getOrNull(index + 1)?.text?.toString() ?: ""
-        return listOf("");
+        return listOf("")
     }
 
 

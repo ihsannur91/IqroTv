@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import id.myindo.ecosystem.iqrotv.R
 import java.util.ArrayList
 
@@ -18,7 +19,7 @@ class IqroPage5Fragment : Fragment() {
 
     private var listener: OnRowClickListener? = null
     private lateinit var rows: List<ConstraintLayout>
-    private lateinit var iqraOnePageFifth: HashMap<Int,List<TextView>>
+    private lateinit var iqraOnePageFifth: HashMap<Int,List<String>>
 
 
     interface OnRowClickListener {
@@ -51,15 +52,15 @@ class IqroPage5Fragment : Fragment() {
             view.findViewById(R.id.row8)
         )
 
-        iqraOnePageFifth = HashMap<Int,List<TextView>>()
-        iqraOnePageFifth[0] = listOf(view.findViewById(R.id.ayat1))
-        iqraOnePageFifth[1] = listOf(view.findViewById(R.id.ayat2),view.findViewById(R.id.ayat3))
-        iqraOnePageFifth[2] = listOf(view.findViewById(R.id.ayat4),view.findViewById(R.id.ayat5))
-        iqraOnePageFifth[3] = listOf(view.findViewById(R.id.ayat6),view.findViewById(R.id.ayat7))
-        iqraOnePageFifth[4] = listOf(view.findViewById(R.id.ayat8),view.findViewById(R.id.ayat9))
-        iqraOnePageFifth[5] = listOf(view.findViewById(R.id.ayat10),view.findViewById(R.id.ayat11))
-        iqraOnePageFifth[6] = listOf(view.findViewById(R.id.ayat12),view.findViewById(R.id.ayat13))
-        iqraOnePageFifth[7] = listOf(view.findViewById(R.id.ayat14))
+        iqraOnePageFifth = HashMap<Int,List<String>>()
+        iqraOnePageFifth[0] = listOf("ha ja")
+        iqraOnePageFifth[1] = listOf("sa ha ja","ha a ja")
+        iqraOnePageFifth[2] = listOf("sa ha ba","sa ja ha")
+        iqraOnePageFifth[3] = listOf("ba ha a","sa ha ja")
+        iqraOnePageFifth[4] = listOf("ha a ha","sa a ja")
+        iqraOnePageFifth[5] = listOf("ha a ta","ha ba sa")
+        iqraOnePageFifth[6] = listOf("ha ha a","ja ja a")
+        iqraOnePageFifth[7] = listOf("ha ja sa ta ba a")
 
         rows.forEachIndexed { index, textView ->
             textView.setOnClickListener {
@@ -79,14 +80,14 @@ class IqroPage5Fragment : Fragment() {
         Log.d("getAyatText", index.toString())
         if(iqraOnePageFifth.contains(index)) {
             var list = ArrayList<String>()
-            for (textView: TextView in iqraOnePageFifth[index]!!) {
-                list.add(textView.text.toString());
+            for (textView: String in iqraOnePageFifth[index]!!) {
+                list.add(textView)
             }
-            return list;
+            return list
         }
 //        val ayat1 = ayatTexts.getOrNull(index)?.text?.toString() ?: ""
 //        val ayat2 = ayatTexts.getOrNull(index + 1)?.text?.toString() ?: ""
-        return listOf("");
+        return listOf("")
     }
 
     fun highlightRow(row: Int, prevRow: Int, highlight: Boolean) {
@@ -94,10 +95,9 @@ class IqroPage5Fragment : Fragment() {
         for (row in rows) {
             row.setBackgroundColor(Color.TRANSPARENT)
         }
-
         rows[row].setBackgroundColor(
-            if (highlight) resources.getColor(R.color.highlight_color)
-            else resources.getColor(android.R.color.transparent)
+            if (highlight) ContextCompat.getColor(requireContext(), R.color.highlight_color)
+            else Color.TRANSPARENT
         )
     }
 }

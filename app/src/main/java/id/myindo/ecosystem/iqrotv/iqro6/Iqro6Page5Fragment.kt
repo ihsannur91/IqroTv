@@ -50,7 +50,8 @@ class Iqro6Page5Fragment : Fragment() {
             view.findViewById(R.id.row4),
             view.findViewById(R.id.row5),
             view.findViewById(R.id.row6),
-            view.findViewById(R.id.row7)
+            view.findViewById(R.id.row7),
+            view.findViewById(R.id.row8)
         )
 
         iqraOnePageOne = HashMap<Int,List<TextView>>()
@@ -80,6 +81,9 @@ class Iqro6Page5Fragment : Fragment() {
     }
 
     fun highlightRow(row: Int, highlight: Boolean) {
+        for (row in rows) {
+            row.setBackgroundColor(Color.TRANSPARENT)
+        }
         rows[row].setBackgroundColor(
             if (highlight) ContextCompat.getColor(requireContext(), R.color.highlight_color)
             else Color.TRANSPARENT

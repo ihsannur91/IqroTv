@@ -72,9 +72,11 @@ class IqroActivity : AppCompatActivity(),
             finish()
         }
 
+
         adapter = IqroPagerAdapter(this)
         viewPager.adapter = adapter
         viewPager.offscreenPageLimit = 5
+
 
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -121,7 +123,7 @@ class IqroActivity : AppCompatActivity(),
 
     private fun updatePageIndicator(currentPage: Int) {
         val totalPage = adapter.itemCount
-        pageIndicator.text = "${currentPage + 1}/$totalPage"
+        pageIndicator.text =    "${currentPage + 1}/$totalPage"
     }
 
     private fun updateNavigationButtons(currentPage: Int) {
@@ -219,15 +221,47 @@ class IqroActivity : AppCompatActivity(),
             mediaPlayer?.start()
 
             highlightCurrentRow(page, row, prevRow, true)
+            // Tampilkan tombol Pause dan Stop
+
+            binding.btnPauseResume.visibility = View.VISIBLE
+            binding.btnStop.visibility = View.VISIBLE
+
+            binding.btnPauseResume.setOnClickListener {
+                if (mediaPlayer?.isPlaying == true) {
+                    mediaPlayer?.pause()
+                   binding.btnPauseResume.setImageResource(R.drawable.ic_play)
+                } else {
+                    mediaPlayer?.start()
+                    binding.btnPauseResume.setImageResource(R.drawable.ic_pause)
+                }
+            }
+
+            binding.btnStop.setOnClickListener {
+
+                stopAudioPlayback()
+                showHidePopupWithAnimation(false)
+                highlightCurrentRow(page, row, prevRow, false)
+
+            }
 
             mediaPlayer?.setOnCompletionListener {
                 highlightCurrentRow(page, row, prevRow, false)
                 showHidePopupWithAnimation(false)
-
+                stopAudioPlayback()
             }
         } else {
             Log.d("IqroActivity", "Sound resource ID not found for page $page and row $row")
         }
+    }
+
+    private fun stopAudioPlayback() {
+        mediaPlayer?.stop()
+        mediaPlayer?.release()
+        mediaPlayer = null
+
+        // Sembunyikan tombol setelah audio berhenti
+        binding.btnPauseResume.visibility = View.GONE
+        binding.btnStop.visibility = View.GONE
     }
 
     private fun playAndAdvance() {
@@ -248,6 +282,27 @@ class IqroActivity : AppCompatActivity(),
             // Highlight baris yang sedang diputar
             highlightCurrentRow(currentPage, currentRow, prevRow,true)
 
+            binding.btnPauseResume.visibility = View.VISIBLE
+            binding.btnStop.visibility = View.VISIBLE
+
+            binding.btnPauseResume.setOnClickListener {
+                if (mediaPlayer?.isPlaying == true) {
+                    mediaPlayer?.pause()
+                    binding.btnPauseResume.setImageResource(R.drawable.ic_play)
+                } else {
+                    mediaPlayer?.start()
+                    binding.btnPauseResume.setImageResource(R.drawable.ic_pause)
+                }
+            }
+
+            binding.btnStop.setOnClickListener {
+
+                stopAudioPlayback()
+                showHidePopupWithAnimation(false)
+                highlightCurrentRow(currentPage, currentRow, prevRow, false)
+
+            }
+
             // Mulai pemutaran suara
             mediaPlayer?.start()
 
@@ -259,6 +314,7 @@ class IqroActivity : AppCompatActivity(),
             mediaPlayer?.setOnCompletionListener {
                 // Hilangkan highlight dari baris yang selesai diputar
                 highlightCurrentRow(currentPage, currentRow, prevRow,false)
+                stopAudioPlayback()
 
                 // Increment currentRow untuk pindah ke baris berikutnya
                 Log.d("playAndAdvance", "currentRow $currentRow")
@@ -345,13 +401,13 @@ class IqroActivity : AppCompatActivity(),
     private fun getSoundResourceForPage5(row: Int): Int {
         return when (row) {
             0 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris1 else R.raw.full_iqro1_halaman5_baris1
-            1 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris2 else R.raw.full_iqro1_halaman4_baris2
-            2 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris3 else R.raw.full_iqro1_halaman4_baris3
-            3 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris4 else R.raw.full_iqro1_halaman4_baris4
-            4 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris5 else R.raw.full_iqro1_halaman4_baris5
-            5 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris6 else R.raw.full_iqro1_halaman4_baris6
-            6 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris7 else R.raw.full_iqro1_halaman4_baris7
-            7 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris8 else R.raw.full_iqro1_halaman4_baris8
+            1 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris2 else R.raw.full_iqro1_halaman5_baris2
+            2 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris3 else R.raw.full_iqro1_halaman5_baris3
+            3 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris4 else R.raw.full_iqro1_halaman5_baris4
+            4 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris5 else R.raw.full_iqro1_halaman5_baris5
+            5 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris6 else R.raw.full_iqro1_halaman5_baris6
+            6 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris7 else R.raw.full_iqro1_halaman5_baris7
+            7 -> if (voiceActor == "male") R.raw.m_full_iqro1_halaman5_baris8 else R.raw.full_iqro1_halaman5_baris8
             else -> -1
         }
     }

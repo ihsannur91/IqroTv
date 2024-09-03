@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import id.myindo.ecosystem.iqrotv.R
 import java.util.ArrayList
 
@@ -19,7 +20,7 @@ class IqroPage4Fragment : Fragment() {
     private var listener: OnRowClickListener? = null
     private lateinit var rows: List<ConstraintLayout>
 
-    private lateinit var iqraOnePageFour: HashMap<Int,List<TextView>>
+    private lateinit var iqraOnePageFour: HashMap<Int,List<String>>
 
     interface OnRowClickListener {
         fun onRowClick(row: Int)
@@ -53,15 +54,15 @@ class IqroPage4Fragment : Fragment() {
             view.findViewById(R.id.row8)
         )
 
-        iqraOnePageFour = HashMap<Int,List<TextView>>()
-        iqraOnePageFour[0] = listOf(view.findViewById(R.id.ayat1))
-        iqraOnePageFour[1] = listOf(view.findViewById(R.id.ayat2),view.findViewById(R.id.ayat3))
-        iqraOnePageFour[2] = listOf(view.findViewById(R.id.ayat4),view.findViewById(R.id.ayat5))
-        iqraOnePageFour[3] = listOf(view.findViewById(R.id.ayat6),view.findViewById(R.id.ayat7))
-        iqraOnePageFour[4] = listOf(view.findViewById(R.id.ayat8),view.findViewById(R.id.ayat9))
-        iqraOnePageFour[5] = listOf(view.findViewById(R.id.ayat10),view.findViewById(R.id.ayat11))
-        iqraOnePageFour[6] = listOf(view.findViewById(R.id.ayat12),view.findViewById(R.id.ayat13))
-        iqraOnePageFour[7] = listOf(view.findViewById(R.id.ayat14))
+        iqraOnePageFour = HashMap<Int,List<String>>()
+        iqraOnePageFour[0] = listOf("ja")
+        iqraOnePageFour[1] = listOf("ja a sa","ja ja a")
+        iqraOnePageFour[2] = listOf("ja ta sa","ja ta a")
+        iqraOnePageFour[3] = listOf("ja a sa","sa ja ba")
+        iqraOnePageFour[4] = listOf("sa a ja","ba a ja")
+        iqraOnePageFour[5] = listOf("ja ja sa","ja a sa")
+        iqraOnePageFour[6] = listOf("sa sa ja","ja a ja")
+        iqraOnePageFour[7] = listOf("ja sa ta ba a")
 
 
 
@@ -85,8 +86,8 @@ class IqroPage4Fragment : Fragment() {
             row.setBackgroundColor(Color.TRANSPARENT)
         }
         rows[row].setBackgroundColor(
-            if (highlight) resources.getColor(R.color.highlight_color)
-            else resources.getColor(android.R.color.transparent)
+            if (highlight) ContextCompat.getColor(requireContext(), R.color.highlight_color)
+            else Color.TRANSPARENT
         )
     }
 
@@ -94,14 +95,14 @@ class IqroPage4Fragment : Fragment() {
         Log.d("getAyatText", index.toString())
         if(iqraOnePageFour.contains(index)) {
             var list = ArrayList<String>()
-            for (textView: TextView in iqraOnePageFour[index]!!) {
-                list.add(textView.text.toString());
+            for (textView: String in iqraOnePageFour[index]!!) {
+                list.add(textView)
             }
-            return list;
+            return list
         }
 //        val ayat1 = ayatTexts.getOrNull(index)?.text?.toString() ?: ""
 //        val ayat2 = ayatTexts.getOrNull(index + 1)?.text?.toString() ?: ""
-        return listOf("");
+        return listOf("")
     }
 
 }

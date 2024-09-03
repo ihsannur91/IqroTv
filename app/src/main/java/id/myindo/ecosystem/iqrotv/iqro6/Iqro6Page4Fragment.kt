@@ -78,6 +78,9 @@ class Iqro6Page4Fragment : Fragment() {
     }
 
     fun highlightRow(row: Int, highlight: Boolean) {
+        for (row in rows) {
+            row.setBackgroundColor(Color.TRANSPARENT)
+        }
         rows[row].setBackgroundColor(
             if (highlight) ContextCompat.getColor(requireContext(), R.color.highlight_color)
             else Color.TRANSPARENT

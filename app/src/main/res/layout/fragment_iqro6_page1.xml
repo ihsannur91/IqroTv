@@ -20,17 +20,17 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="و&lt;-- masukan dengan dengung, Ditekan dan ditahan 2 harokat نْ ( ـً ـٍ ـٌ )"
+                android:text=" Ditekan dan ditahan 2 harokat نْ ( ـً ـٍ ـٌ )"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
@@ -38,6 +38,18 @@
                 android:textSize="26sp"
                 android:textStyle="normal" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text=" و &lt;-- masukan dengan dengung"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textDirection="ltr"
+                android:textSize="26sp"
+                android:textStyle="normal" />
 
         </LinearLayout>
 
@@ -181,6 +193,15 @@
             android:focusable="true"
             android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_circle"
+                android:layout_marginStart="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/ayat4"
                 android:layout_width="wrap_content"
@@ -199,6 +220,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_circle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/ayat3"
                 android:layout_width="wrap_content"
@@ -206,7 +236,7 @@
                 android:layout_marginEnd="40dp"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="رَحْمَةًوَّعِلْمًا 0"
+                android:text="رَحْمَةًوَّعِلْمًا"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
@@ -233,6 +263,15 @@
             android:clickable="true"
             android:focusable="true">
 
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_circle"
+                android:layout_marginStart="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/ayat6"
                 android:layout_width="wrap_content"
@@ -240,7 +279,7 @@
                 android:layout_marginStart="45dp"
                 android:gravity="center"
                 android:padding="8dp"
-                android:text="مِنْ وَّرَآئِهِمْ مُّحِيْطٌ 0"
+                android:text="مِنْ وَّرَآئِهِمْ مُّحِيْطٌ"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
@@ -251,6 +290,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_circle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/ayat5"
                 android:layout_width="wrap_content"
@@ -258,7 +306,7 @@
                 android:layout_marginEnd="40dp"
                 android:gravity="center"
                 android:padding="8dp"
-                android:text="وَاِلٰهُكُمْ اِلٰهُ وَّاحِدٌ 0"
+                android:text="وَاِلٰهُكُمْ اِلٰهُ وَّاحِدٌ"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
@@ -285,6 +333,15 @@
             android:clickable="true"
             android:focusable="true">
 
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_circle"
+                android:layout_marginStart="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/ayat10"
                 android:layout_width="wrap_content"
@@ -292,7 +349,7 @@
                 android:layout_marginStart="45dp"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="كَانَ فَاحِشَةًوَّمَقْتًا 0"
+                android:text="كَانَ فَاحِشَةًوَّمَقْتًا"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
@@ -303,6 +360,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_circle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/ayat9"
                 android:layout_width="wrap_content"
@@ -310,7 +376,7 @@
                 android:layout_marginEnd="40dp"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="اَحْسَنُ اَثَاثًاوَّرِءْيًا 0"
+                android:text="اَحْسَنُ اَثَاثًاوَّرِءْيًا"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
@@ -338,6 +404,15 @@
             android:focusable="true"
             android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_circle"
+                android:layout_marginStart="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/ayat12"
                 android:layout_width="wrap_content"
@@ -346,7 +421,7 @@
                 android:layout_marginEnd="45dp"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="وَالْاٰخِرَةُخَيْرٌوَّاَبْقٰى 0"
+                android:text="وَالْاٰخِرَةُخَيْرٌوَّاَبْقٰى"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
@@ -357,6 +432,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_circle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/ayat11"
                 android:layout_width="wrap_content"
@@ -364,7 +448,7 @@
                 android:layout_marginEnd="40dp"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="اِلَّاحَمِيْمًاوَّغَسَّاقًا 0"
+                android:text="اِلَّاحَمِيْمًاوَّغَسَّاقًا"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
@@ -392,6 +476,15 @@
             android:focusable="true"
             android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_circle"
+                android:layout_marginStart="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/ayat_14"
                 android:layout_width="wrap_content"
@@ -399,7 +492,7 @@
                 android:layout_marginStart="45dp"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="0 مِنْ وَّلِيٍّ وَّلَا نَصِيْرٍ"
+                android:text="مِنْ وَّلِيٍّ وَّلَا نَصِيْرٍ"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
@@ -410,6 +503,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_circle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/ayat_13"
@@ -418,7 +519,7 @@
                 android:layout_marginEnd="40dp"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="بُهْتَانًاوَّاِثْمًامُّبِيْنًا 0"
+                android:text="بُهْتَانًاوَّاِثْمًامُّبِيْنًا"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
