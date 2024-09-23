@@ -6,7 +6,13 @@ import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import id.myindo.ecosystem.iqrotv.databinding.ActivityMainBinding
 import id.myindo.ecosystem.iqrotv.iqro1.IqroActivity
+import id.myindo.ecosystem.iqrotv.iqro2.Iqro2Activity
+import id.myindo.ecosystem.iqrotv.iqro3.Iqro3Activity
+import id.myindo.ecosystem.iqrotv.iqro4.Iqro4Activity
+import id.myindo.ecosystem.iqrotv.iqro5.Iqro5Activity
 import id.myindo.ecosystem.iqrotv.iqro6.Iqro6Activity
+import id.myindo.ecosystem.iqrotv.utils.DataModel
+import id.myindo.ecosystem.iqrotv.utils.ListFragment
 
 class MainActivity : FragmentActivity() {
 
@@ -48,10 +54,10 @@ class MainActivity : FragmentActivity() {
     private fun openIqroActivity(data: DataModel.Result.Detail) {
         val intent = when (data.title) {
             "IQRO 1" -> Intent(this, IqroActivity::class.java)
-            "IQRO 2" -> Intent(this, IqroActivity::class.java)
-            "IQRO 3" -> Intent(this, IqroActivity::class.java)
-            "IQRO 4" -> Intent(this, IqroActivity::class.java)
-            "IQRO 5" -> Intent(this, IqroActivity::class.java)
+            "IQRO 2" -> Intent(this, Iqro2Activity::class.java)
+            "IQRO 3" -> Intent(this, Iqro3Activity::class.java)
+            "IQRO 4" -> Intent(this, Iqro4Activity::class.java)
+            "IQRO 5" -> Intent(this, Iqro5Activity::class.java)
             "IQRO 6" -> Intent(this, Iqro6Activity::class.java)
             else -> null
         }

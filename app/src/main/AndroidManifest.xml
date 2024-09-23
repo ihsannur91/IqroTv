@@ -11,24 +11,36 @@
     <application
         android:allowBackup="true"
         android:banner="@mipmap/ic_launcher"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:hardwareAccelerated="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat">
-
         <activity
-            android:name=".iqro6.Iqro6Activity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-
+            android:name=".alquran.AlquranActivity"
+            android:exported="false" />
         <activity
-            android:name=".iqro1.IqroActivity"
+            android:name=".iqro5.Iqro5Activity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
         <activity
-            android:name=".MainActivity"
+            android:name=".iqro4.Iqro4Activity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".iqro3.Iqro3Activity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".iqro2.Iqro2Activity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".home.HomeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".utils.SplashScreenActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
@@ -42,7 +54,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".iqro6.Iqro6Activity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".iqro1.IqroActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>
 
 </manifest>

@@ -41,6 +41,8 @@
     <color name="dark_black">#595758</color>
     <color name="primary">#DD3E46</color>
     <color name="highlight_color">#0be881</color>
+    <color name="semiTransparentColor">#40FFFFFF</color>
+
 
     <color name="list_sparator">#616161</color>
     <color name="bg">#303941</color>

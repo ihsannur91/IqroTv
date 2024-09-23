@@ -62,4 +62,13 @@ dependencies {
 
     //Flip animation
     implementation 'com.wajahatkarim:easyflipviewpager:2.0.1'
+
+    //lottie
+    implementation 'com.airbnb.android:lottie:6.0.0'
+
+    //blur
+    implementation 'jp.wasabeef:blurry:4.0.1'
+
+
+
 }

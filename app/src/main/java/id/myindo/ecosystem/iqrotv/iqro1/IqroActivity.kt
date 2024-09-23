@@ -43,8 +43,6 @@ class IqroActivity : AppCompatActivity(),
     private lateinit var popupTextView2: TextView
     private lateinit var popupTextView3: TextView
 
-    private var isShowHidePopUp = false
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityIqroBinding.inflate(layoutInflater)
