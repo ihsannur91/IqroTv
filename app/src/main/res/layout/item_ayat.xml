@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/row_ayat"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/table_row_selector"
+    android:clickable="true"
+    android:focusable="true">
+
+    <TextView
+        android:id="@+id/ayat_arabic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:fontFamily="@font/amiri_bold"
+        android:gravity="right"
+        android:textAlignment="gravity"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textDirection="ltr"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:textSize="25sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/ayat_arabic"
+        app:layout_constraintEnd_toStartOf="@+id/ayat_arabic"
+        app:layout_constraintTop_toTopOf="@+id/ayat_arabic">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/bg_border_quran"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#8A9661" />
+
+        <TextView
+            android:id="@+id/ayat_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="١"
+            android:textColor="#8A9661"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/ayat_latin"
+        android:layout_width="400dp"
+        android:layout_height="33dp"
+        android:fontFamily="@font/amiri_bold"
+        android:text="asdsadasd"
+        android:textAllCaps="false"
+        android:layout_marginStart="20dp"
+        android:textColor="#8A9661"
+        android:textDirection="ltr"
+        android:textSize="15sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ayat_arabic" />
+
+    <TextView
+        android:id="@+id/ayat_translation"
+        android:layout_width="400dp"
+        android:layout_height="33dp"
+        android:fontFamily="@font/amiri_bold"
+        android:text="asdsadasd"
+        android:layout_marginStart="20dp"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textDirection="ltr"
+        android:textSize="15sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ayat_latin" />
+
+    <View
+        android:id="@+id/view23"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="#D9D9D9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ayat_translation" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
