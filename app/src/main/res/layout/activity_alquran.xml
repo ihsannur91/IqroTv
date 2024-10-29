@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".22" />
+        app:layout_constraintGuide_percent=".2" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
@@ -34,28 +34,43 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:background="@drawable/home_bg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_back"
             android:layout_marginTop="15dp"
-            android:fontFamily="@font/inter_semibold"
-            android:text="Al-Quran"
-            android:textColor="@color/black"
-            android:textSize="23dp" />
+            android:layout_marginStart="10dp"/>
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:fontFamily="@font/inter_semibold"
-            android:text="Pilih dan baca surah yang ingin Anda temukan!"
-            android:textColor="@color/dark_gray" />
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Al-Quran"
+                android:textColor="@color/black"
+                android:textSize="23dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Pilih dan baca surah yang ingin Anda temukan!"
+                android:textColor="@color/dark_gray" />
+        </LinearLayout>
+
+
 
         <View
             android:id="@+id/view2"

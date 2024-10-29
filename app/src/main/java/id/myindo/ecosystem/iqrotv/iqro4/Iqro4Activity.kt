@@ -338,14 +338,12 @@ class Iqro4Activity : AppCompatActivity(),Iqro4Page1Fragment.OnRowClickListener 
 
     private fun getSoundResourceForPage1(row: Int): Int {
         return when (row) {
-            0 -> if (voiceActor == "male") R.raw.f_full_iqro3_halaman1_baris1 else R.raw.f_full_iqro3_halaman1_baris1
-            1 -> row
-            2 -> if (voiceActor == "male") R.raw.f_full_iqro3_halaman1_baris3 else R.raw.f_full_iqro3_halaman1_baris3
-            3 -> if (voiceActor == "male") R.raw.f_full_iqro3_halaman1_baris4 else R.raw.f_full_iqro3_halaman1_baris4
-            4 -> if (voiceActor == "male") R.raw.f_full_iqro3_halaman1_baris5 else R.raw.f_full_iqro3_halaman1_baris5
-            5 -> if (voiceActor == "male") R.raw.f_full_iqro3_halaman1_baris6 else R.raw.f_full_iqro3_halaman1_baris6
-            6 -> if (voiceActor == "male") R.raw.f_full_iqro3_halaman1_baris7 else R.raw.f_full_iqro3_halaman1_baris7
-            7 -> if (voiceActor == "male") R.raw.f_full_iqro3_halaman1_baris8 else R.raw.f_full_iqro3_halaman1_baris8
+            0 -> if (voiceActor == "male") R.raw.f_full_iqro4_halaman1_baris2 else R.raw.f_full_iqro4_halaman1_baris2
+            1 -> if (voiceActor == "male") R.raw.f_full_iqro4_halaman1_baris3 else R.raw.f_full_iqro4_halaman1_baris3
+            2 -> if (voiceActor == "male") R.raw.f_full_iqro4_halaman1_baris4 else R.raw.f_full_iqro4_halaman1_baris4
+            3 -> if (voiceActor == "male") R.raw.f_full_iqro4_halaman1_baris5 else R.raw.f_full_iqro4_halaman1_baris5
+            4 -> if (voiceActor == "male") R.raw.f_full_iqro4_halaman1_baris6 else R.raw.f_full_iqro4_halaman1_baris6
+            5 -> if (voiceActor == "male") R.raw.f_full_iqro4_halaman1_baris7 else R.raw.f_full_iqro4_halaman1_baris7
             else -> -1
         }
     }

@@ -24,6 +24,10 @@ class AlquranActivity : AppCompatActivity() {
 
         val surahList = getSurahList()
 
+        binding.imgBack.setOnClickListener {
+            finish()
+        }
+
         // Setup RecyclerView
         val surahRecyclerView: RecyclerView = findViewById(R.id.surah_recycler_view)
         surahRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -40,6 +44,7 @@ class AlquranActivity : AppCompatActivity() {
         // Setup ViewPager2 (default ke surah pertama)
         val viewPager: ViewPager2 = findViewById(R.id.view_pager)
         viewPager.adapter = AyatPagerAdapter(this, surahList[0])
+        viewPager.isUserInputEnabled = false
 
         // Update tampilan pertama dengan surah pertama
 
@@ -52,7 +57,7 @@ class AlquranActivity : AppCompatActivity() {
     private fun getSurahList(): List<Surah> {
         return listOf(
             Surah(
-                "Al-Alaq", "١","Pembukaan", listOf(
+                "Al-Alaq", "١","Segumpal Darah", listOf(
                     Ayat("١", "اِقۡرَاۡ بِاسۡمِ رَبِّكَ الَّذِىۡ خَلَقَ", "iqra' bismi rabbikalladzî khalaq", "Bacalah dengan (menyebut) nama Tuhanmu yang menciptakan!","alalaq_ayat1"),
                     Ayat("٢", "خَلَقَ الۡاِنۡسَانَ مِنۡ عَلَقٍ", "khalaqal-insâna min ‘alaq", "Dia menciptakan manusia dari segumpal darah.","alalaq_ayat2"),
                     Ayat("٣", "اِقۡرَاۡ وَرَبُّكَ الۡاَكۡرَمُۙ", "iqra' wa rabbukal-akram", "Bacalah! Tuhanmulah Yang Mahamulia","alalaq_ayat3"),
@@ -102,7 +107,8 @@ class AlquranActivity : AppCompatActivity() {
                     Ayat("٩", "فِىۡ عَمَدٍ مُّمَدَّدَةٍ", "fî ‘amadim mumaddadah", "(sedangkan mereka) diikat pada tiang-tiang yang panjang.","alhumazah_ayat9")
                 )
             )
-
         )
     }
+
+
 }
