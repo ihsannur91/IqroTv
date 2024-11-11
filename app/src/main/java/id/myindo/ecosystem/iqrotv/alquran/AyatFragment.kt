@@ -1,5 +1,6 @@
 package id.myindo.ecosystem.iqrotv.alquran
 
+import android.annotation.SuppressLint
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +10,6 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,6 +30,7 @@ class AyatFragment : Fragment() {
     private var dY: Float = 0f
     private lateinit var playPauseButton: ImageButton
     private lateinit var stopButton: ImageButton
+    private lateinit var replayButton: ImageButton
     private lateinit var audioControlLayout: CardView
 
     private lateinit var recyclerView: RecyclerView
@@ -47,6 +48,7 @@ class AyatFragment : Fragment() {
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -61,6 +63,8 @@ class AyatFragment : Fragment() {
         playPauseButton = view.findViewById(R.id.button_play_pause)
         stopButton = view.findViewById(R.id.button_stop)
         audioControlLayout = view.findViewById(R.id.audio_control_layout)
+        replayButton = view.findViewById<ImageButton>(R.id.button_replay)
+
 
         arguments?.getParcelable<Surah>(ARG_SURAH)?.let { surah ->
             ayatList = surah.ayatList
@@ -83,6 +87,11 @@ class AyatFragment : Fragment() {
             }
         }
 
+        replayButton.setOnClickListener {
+            replayAudio()
+        }
+
+
         // Set listener untuk tombol stop
         stopButton.setOnClickListener {
             stopAudio()
@@ -98,9 +107,26 @@ class AyatFragment : Fragment() {
                     true
                 }
                 MotionEvent.ACTION_MOVE -> {
+                    // Hitung posisi baru
+                    var newX = motionEvent.rawX + dX
+                    var newY = motionEvent.rawY + dY
+
+                    // Mendapatkan ukuran layar
+                    val displayMetrics = view.context.resources.displayMetrics
+                    val screenWidth = displayMetrics.widthPixels.toFloat()
+                    val screenHeight = displayMetrics.heightPixels.toFloat()
+
+                    // Mendapatkan ukuran view
+                    val viewWidth = view.width.toFloat()
+                    val viewHeight = view.height.toFloat()
+
+                    // Membatasi posisi view agar tidak keluar layar
+                    newX = newX.coerceIn(0f, screenWidth - viewWidth)
+                    newY = newY.coerceIn(0f, screenHeight - viewHeight)
+
                     view.animate()
-                        .x(motionEvent.rawX + dX)
-                        .y(motionEvent.rawY + dY)
+                        .x(newX)
+                        .y(newY)
                         .setDuration(0)
                         .start()
                     true
@@ -108,6 +134,15 @@ class AyatFragment : Fragment() {
                 MotionEvent.ACTION_UP -> {
                     // Kembali ke layer default setelah pergerakan selesai
                     view.setLayerType(View.LAYER_TYPE_NONE, null)
+
+                    // Cek apakah ini adalah klik dengan menghitung perbedaan posisi awal dan akhir
+                    val clickThreshold = 10 // Threshold untuk mendeteksi klik (sesuaikan sesuai kebutuhan)
+                    val isClick = kotlin.math.abs(motionEvent.rawX + dX - view.x) < clickThreshold &&
+                            kotlin.math.abs(motionEvent.rawY + dY - view.y) < clickThreshold
+
+                    if (isClick) {
+                        view.performClick() // Memanggil performClick jika ini adalah klik
+                    }
                     true
                 }
                 else -> false
@@ -158,6 +193,16 @@ class AyatFragment : Fragment() {
         }
     }
 
+    private fun replayAudio() {
+        if (isPlaying) {
+            mediaPlayer.seekTo(0) // Mengatur posisi audio kembali ke awal
+        } else {
+            // Jika audio tidak sedang diputar, mulai pemutaran ulang
+            playAudio(ayatList[currentAyatIndex], currentAyatIndex)
+        }
+        playPauseButton.setImageResource(R.drawable.ic_pause) // Set ke ikon pause setelah replay
+    }
+
     private fun pauseAudio() {
         if (isPlaying) {
             mediaPlayer.pause()
@@ -192,7 +237,4 @@ class AyatFragment : Fragment() {
         mediaPlayer.release() // Pastikan MediaPlayer dirilis untuk mencegah memory leak
     }
 }
-
-
-
 

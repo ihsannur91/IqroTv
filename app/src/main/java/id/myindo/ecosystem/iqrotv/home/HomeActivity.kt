@@ -1,27 +1,20 @@
 package id.myindo.ecosystem.iqrotv.home
 
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MotionEvent
 import android.view.View
-import androidx.appcompat.view.menu.MenuAdapter
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import id.myindo.ecosystem.iqrotv.AiActivity
-import id.myindo.ecosystem.iqrotv.MainActivity
+import id.myindo.ecosystem.iqrotv.search.AiActivity
+import id.myindo.ecosystem.iqrotv.iqro1.MainActivity
 import id.myindo.ecosystem.iqrotv.R
 import id.myindo.ecosystem.iqrotv.adapters.HomeAdapter
 import id.myindo.ecosystem.iqrotv.alquran.AlquranActivity
 import id.myindo.ecosystem.iqrotv.data.MenuItem
 import id.myindo.ecosystem.iqrotv.databinding.ActivityHomeBinding
-import id.myindo.ecosystem.iqrotv.iqro1.IqroActivity
-import jp.wasabeef.blurry.Blurry
-import kotlin.math.abs
 
 class HomeActivity : AppCompatActivity() {
 
@@ -30,9 +23,9 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var menuAdapter: HomeAdapter
     private val menuList = listOf(
-        MenuItem("Al-Quran", "+5000 Channels", R.drawable.gusdur),
-        MenuItem("Iqro", "+1200 Series", R.drawable.caknun),
-        MenuItem("Pencarian Ayat", "+500 Stations", R.drawable.gusbaha)
+        MenuItem("Al-Quran", "+5000 Channels", R.drawable.alquran6),
+        MenuItem("Iqro", "+1200 Series", R.drawable.iqro4),
+        MenuItem("Pencarian Ayat", "+500 Stations", R.drawable.ic_search)
     )
     private lateinit var cardView: CardView
     private var dX: Float = 0f

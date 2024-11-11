@@ -15,7 +15,7 @@
         android:background="@color/white_lotion"
         app:cardCornerRadius="20dp"
         app:cardElevation="3dp"
-        android:visibility="gone"
+        app:cardBackgroundColor="@color/white_lotion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +34,18 @@
                 android:src="@drawable/ic_play"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintHorizontal_bias="0.13"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/button_replay"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:contentDescription="Play/Pause"
+                android:src="@drawable/ic_replay"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,6 +57,7 @@
                 android:src="@drawable/ic_stop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.79"
                 app:layout_constraintStart_toEndOf="@+id/button_play_pause"
                 app:layout_constraintTop_toTopOf="parent" />
 

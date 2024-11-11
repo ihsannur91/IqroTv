@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IqroTv">
         <activity
-            android:name=".AiActivity"
+            android:name=".search.AiActivity"
             android:exported="false" />
         <activity
             android:name=".alquran.AlquranActivity"
@@ -61,7 +61,7 @@
             android:name=".iqro1.IqroActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".iqro1.MainActivity"
             android:exported="false" />
     </application>
 

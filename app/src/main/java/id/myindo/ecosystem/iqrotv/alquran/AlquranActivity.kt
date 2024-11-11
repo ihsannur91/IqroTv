@@ -64,7 +64,7 @@ class AlquranActivity : AppCompatActivity() {
                     Ayat("٤", "الَّذِىۡ عَلَّمَ بِالۡقَلَمِۙ", "alladzî ‘allama bil-qalam", "yang mengajar (manusia) dengan pena.","alalaq_ayat4"),
                     Ayat("٥", "عَلَّمَ الۡاِنۡسَانَ مَا لَمۡ يَعۡلَمۡؕ", "‘allamal-insâna mâ lam ya‘lam", "Dia mengajarkan manusia apa yang tidak diketahuinya.","alalaq_ayat5"),
                     Ayat("٦", "كَلَّاۤ اِنَّ الۡاِنۡسَانَ لَيَطۡغٰٓىۙ", "kallâ innal-insâna layathghâ", "Sekali-kali tidak! Sesungguhnya manusia itu benar-benar melampaui batas","alalaq_ayat6"),
-                    Ayat("٧", "اَنۡ رَّاٰهُ اسۡتَغۡنٰىؕ", "ar ra'âhustaghnâ", "ketika melihat dirinya serba berkecukupan.","alalaq_ayat7"),
+                    Ayat("٧", "اَنۡ رَّاٰه  ُ اسۡتَغۡنٰىؕ", "ar ra'âhustaghnâ", "ketika melihat dirinya serba berkecukupan.","alalaq_ayat7"),
                     Ayat("٨", "اِنَّ اِلٰى رَبِّكَ الرُّجۡعٰىؕ", "inna ilâ rabbikar-ruj‘â", "Sesungguhnya hanya kepada Tuhanmulah tempat kembali(-mu).","alalaq_ayat8"),
                     Ayat("٩", "اَرَءَيۡتَ الَّذِىۡ يَنۡهٰىؕ", "a ra'aitalladzî yan-hâ", "Tahukah kamu tentang orang yang melarang","alalaq_ayat9"),
                     Ayat("١٠", "عَبۡدًا اِذَا صَلّٰىؕ", "‘abdan idzâ shallâ", "seorang hamba ketika dia melaksanakan salat?","alalaq_ayat10"),

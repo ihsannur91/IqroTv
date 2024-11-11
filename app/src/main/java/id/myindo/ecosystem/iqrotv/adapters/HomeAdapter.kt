@@ -1,19 +1,12 @@
 package id.myindo.ecosystem.iqrotv.adapters
 
-import android.content.ClipData.Item
-import android.content.Intent
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import id.myindo.ecosystem.iqrotv.AiActivity
-import id.myindo.ecosystem.iqrotv.MainActivity
 import id.myindo.ecosystem.iqrotv.R
-import id.myindo.ecosystem.iqrotv.alquran.AlquranActivity
 import id.myindo.ecosystem.iqrotv.data.MenuItem
 
 class HomeAdapter(

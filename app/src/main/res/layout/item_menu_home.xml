@@ -14,14 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="15dp">
 
         <!-- Ikon dan teks atas -->
         <ImageView
             android:id="@+id/card_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/gusdur"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_search"/>
 
 
         <TextView

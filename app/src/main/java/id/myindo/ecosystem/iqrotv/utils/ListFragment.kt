@@ -28,7 +28,7 @@ class ListFragment : RowsSupportFragment() {
 
         onItemViewSelectedListener = ItemViewSelectedListener()
         onItemViewClickedListener = ItemViewClickedListener()
-
+        
 
         // fill data dummy
         bindData(createDummyData())
@@ -38,7 +38,7 @@ class ListFragment : RowsSupportFragment() {
         val dummyDetails = listOf(
             DataModel.Result.Detail(
                 title = "IQRO 1",
-                overview = "Deskripsi Iqro 1",
+                overview = "IQRA TV adalah sebuah fitur inovatif yang dirancang khusus untuk mendukung pembelajaran Iqra secara digital. Fitur ini memungkinkan pengguna untuk belajar mengeja dan membaca Iqra dengan cara yang interaktif dan mudah dipahami, baik untuk anak-anak maupun pemula. Ketika pengguna memilih atau mengklik baris atau huruf pada halaman Iqra, fitur ini akan memutar suara yang mengucapkan bacaan tersebut, memungkinkan pengguna untuk mengeja dan mengulangi bersama-sama.",
                 backdrop_path = "iqra1",
                 poster_path = "iqra1"
             ),
@@ -74,7 +74,7 @@ class ListFragment : RowsSupportFragment() {
         )
 
         val dummyResult = DataModel.Result(
-            title = "IQRO",
+            title = " ",
             details = dummyDetails
         )
 
