@@ -23,9 +23,9 @@ class AyatFragment : Fragment() {
     private lateinit var mediaPlayer: MediaPlayer
     private var currentAyatIndex: Int = 0
     private lateinit var ayatAdapter: AyatAdapter
+
     private var ayatList: List<Ayat> = emptyList()
     private var isPlaying: Boolean = false // Menyimpan status pemutaran
-
     private var dX: Float = 0f
     private var dY: Float = 0f
     private lateinit var playPauseButton: ImageButton
@@ -63,8 +63,7 @@ class AyatFragment : Fragment() {
         playPauseButton = view.findViewById(R.id.button_play_pause)
         stopButton = view.findViewById(R.id.button_stop)
         audioControlLayout = view.findViewById(R.id.audio_control_layout)
-        replayButton = view.findViewById<ImageButton>(R.id.button_replay)
-
+        replayButton = view.findViewById(R.id.button_replay)
 
         arguments?.getParcelable<Surah>(ARG_SURAH)?.let { surah ->
             ayatList = surah.ayatList
@@ -74,7 +73,6 @@ class AyatFragment : Fragment() {
                 currentAyatIndex = position
                 playAudio(ayat, position)
             }
-
             recyclerView.adapter = ayatAdapter
         }
 
@@ -100,7 +98,7 @@ class AyatFragment : Fragment() {
         audioControlLayout.setOnTouchListener { view, motionEvent ->
             when (motionEvent.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    // Aktifkan hardware layer untuk pergerakan yang lebih mulus
+                    // Aktifkan hardware layer biar gerak lebih mulus
                     view.setLayerType(View.LAYER_TYPE_HARDWARE, null)
                     dX = view.x - motionEvent.rawX
                     dY = view.y - motionEvent.rawY
@@ -120,7 +118,7 @@ class AyatFragment : Fragment() {
                     val viewWidth = view.width.toFloat()
                     val viewHeight = view.height.toFloat()
 
-                    // Membatasi posisi view agar tidak keluar layar
+                    // Membatasi posisi view biar ga keluar layar
                     newX = newX.coerceIn(0f, screenWidth - viewWidth)
                     newY = newY.coerceIn(0f, screenHeight - viewHeight)
 
@@ -236,5 +234,6 @@ class AyatFragment : Fragment() {
         super.onDestroy()
         mediaPlayer.release() // Pastikan MediaPlayer dirilis untuk mencegah memory leak
     }
+
 }
 

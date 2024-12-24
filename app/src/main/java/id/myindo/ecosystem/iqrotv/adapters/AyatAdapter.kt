@@ -11,7 +11,8 @@ import id.myindo.ecosystem.iqrotv.data.Ayat
 
 class AyatAdapter(
     private val ayatList: List<Ayat>,
-    private val onAyatClick: (Ayat, Int) -> Unit
+    private val onAyatClick: (Ayat, Int) -> Unit,
+    private var textSize: Float
 ) : RecyclerView.Adapter<AyatAdapter.AyatViewHolder>() {
 
     private var selectedPosition = -1 // Simpan indeks baris yang sedang diputar
@@ -23,10 +24,15 @@ class AyatAdapter(
         val translationTextView: TextView = itemView.findViewById(R.id.ayat_translation)
 
         fun bind(ayat: Ayat, position: Int) {
-            ayatNumberTextView.text = ayat.number.toString()
+            ayatNumberTextView.text = ayat.number
             arabicTextView.text = ayat.arabicText
             latinTextView.text = ayat.latinText
             translationTextView.text = ayat.translation
+
+            // Terapkan ukuran teks sesuai dengan textSize
+            arabicTextView.textSize = textSize
+            latinTextView.textSize = textSize
+            translationTextView.textSize = textSize
 
             // Ubah background sesuai posisi
             if (position == selectedPosition) {
@@ -39,7 +45,7 @@ class AyatAdapter(
                 onAyatClick(ayat, position)
                 // Simpan indeks dari baris yang sedang diputar
                 selectedPosition = position
-                notifyDataSetChanged() // Refresh tampilan RecyclerView
+                notifyDataSetChanged() // Refresh tampilan untuk menampilkan perubahan
             }
         }
     }
@@ -59,5 +65,11 @@ class AyatAdapter(
     fun setSelectedPosition(position: Int) {
         selectedPosition = position
         notifyDataSetChanged() // Refresh tampilan untuk menampilkan background yang benar
+    }
+
+    // Metode untuk memperbarui ukuran teks
+    fun updateTextSize(newTextSize: Float) {
+        textSize = newTextSize
+        notifyDataSetChanged() // Refresh semua elemen untuk menerapkan ukuran teks baru
     }
 }

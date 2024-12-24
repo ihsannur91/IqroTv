@@ -15,6 +15,7 @@
         android:background="@color/white_lotion"
         app:cardCornerRadius="20dp"
         app:cardElevation="3dp"
+        android:visibility="gone"
         app:cardBackgroundColor="@color/white_lotion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

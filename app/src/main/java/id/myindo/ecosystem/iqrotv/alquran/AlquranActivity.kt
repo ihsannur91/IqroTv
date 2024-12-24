@@ -2,12 +2,12 @@ package id.myindo.ecosystem.iqrotv.alquran
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import id.myindo.ecosystem.iqrotv.R
 import id.myindo.ecosystem.iqrotv.adapters.AyatPagerAdapter
+import id.myindo.ecosystem.iqrotv.adapters.ImageAlphabetAdapter
 import id.myindo.ecosystem.iqrotv.adapters.SurahAdapter
 import id.myindo.ecosystem.iqrotv.data.Ayat
 import id.myindo.ecosystem.iqrotv.data.Surah
@@ -28,6 +28,25 @@ class AlquranActivity : AppCompatActivity() {
             finish()
         }
 
+        // Gambar dengan ukuran small, medium, large
+        val imageList = listOf(
+            Pair(R.drawable.img_alphabet, "small"),
+            Pair(R.drawable.img_alphabet, "medium"),
+            Pair(R.drawable.img_alphabet, "large")
+        )
+
+        // Default gambar terpilih
+        var selectedSize = "small"
+
+        // Set RecyclerView untuk gambar
+        val adapter = ImageAlphabetAdapter(this,imageList) { size ->
+            selectedSize = size
+//            updateViewPagerFragment(size)
+        }
+        binding.imageRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.imageRecyclerView.adapter = adapter
+
+
         // Setup RecyclerView
         val surahRecyclerView: RecyclerView = findViewById(R.id.surah_recycler_view)
         surahRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -47,12 +66,20 @@ class AlquranActivity : AppCompatActivity() {
         viewPager.isUserInputEnabled = false
 
         // Update tampilan pertama dengan surah pertama
-
         binding.tvSurah.text = surahList[0].name
         binding.tvMeaningSurah.text = surahList[0].desc
         binding.tvSurahNumber.text = surahList[0].ayatCount
 
     }
+
+//    private fun setupViewPager(defaultSize: String) {
+//        val pagerAdapter = ViewPagerAdapter(this, defaultSize)
+//        binding.viewPager.adapter = pagerAdapter
+//    }
+//
+//    private fun updateViewPagerFragment(selectedSize: String) {
+//        (binding.viewPager.adapter as? ViewPagerAdapter)?.updateSize(selectedSize)
+//    }
 
     private fun getSurahList(): List<Surah> {
         return listOf(
@@ -99,7 +126,7 @@ class AlquranActivity : AppCompatActivity() {
                     Ayat("١", "وَيۡلٌ لِّـكُلِّ هُمَزَةٍ لُّمَزَةِ ۙ", "wailul likulli humazatil lumazah", "Celakalah setiap pengumpat lagi pencela","alhumazah_ayat1"),
                     Ayat("٢", "اۨلَّذِىۡ جَمَعَ مَالًا وَّعَدَّدَهٗ َۙ", "alladzî jama‘a mâlaw wa ‘addadah", "yang mengumpulkan harta dan menghitung-hitungnya.","alhumazah_ayat2"),
                     Ayat("٣", "يَحۡسَبُ اَنَّ مَالَهٗۤ اَخۡلَدَهَٗ", "yaḫsabu anna mâlahû akhladah", "Dia (manusia) mengira bahwa hartanya dapat mengekalkannya.","alhumazah_ayat3"),
-                    Ayat("٤", "كَلَّا لَيُنۡۢبَذَنَّ فِى الۡحُطَمَةَِِۙ", "kallâ layumbadzanna fil-ḫuthamah", "Sekali-kali tidak! Pasti dia akan dilemparkan ke dalam (neraka) Hutamah.","alhumazah_ayat4"),
+                    Ayat("٤", "كَلَّا لَيُنۡۢبَذَنَّ فِى الۡحُطَمَةَِِۙ", "kall â layumbadzanna fil-ḫuthamah", "Sekali-kali tidak! Pasti dia akan dilemparkan ke dalam (neraka) Hutamah.","alhumazah_ayat4"),
                     Ayat("٥", "وَمَاۤ اَدۡرٰٮكَ مَا الۡحُطَمَةُؕ", "wa mâ adrâka mal-ḫuthamah", "Tahukah kamu apakah (neraka) Hutamah?","alhumazah_ayat5"),
                     Ayat("٦", "نَارُ اللّٰهِ الۡمُوۡقَدَةُ ۙ", "nârullâhil-mûqadah", "(Ia adalah) api (azab) Allah yang dinyalakan","alhumazah_ayat6"),
                     Ayat("٧", "الَّتِىۡ تَطَّلِعُ عَلَى الۡاَفۡـــِٕدَةِ ؕ", "allatî taththali‘u ‘alal-af'idah", "yang (membakar) naik sampai ke hati.","alhumazah_ayat7"),
@@ -109,6 +136,5 @@ class AlquranActivity : AppCompatActivity() {
             )
         )
     }
-
 
 }
